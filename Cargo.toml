@@ -1,0 +1,8 @@
+[package]
+name = "sniper_algorithm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+barter-data = "0.8.1"
+binance = "0.21.0"
