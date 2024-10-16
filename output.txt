@@ -1,0 +1,2049 @@
+Bio ovdje
+Message sent successfully!
+Uniso
+SIU market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Okej
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+Found senders for Instrument { base: btc, quote: usdt, kind: Spot }
+Okej
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market
+U algoContextu feed siu
+Handling feed update in AlgoContext
+Handling L1 update, sending order to market

@@ -6,3 +6,16 @@ edition = "2021"
 [dependencies]
 barter-data = "0.8.1"
 binance = "0.21.0"
+ractor = "0.10"
+tokio = { version = "1", features = [
+    "rt",
+    "time",
+    "sync",
+    "macros",
+    "rt-multi-thread",
+    "signal",
+    "tracing",
+] }
+barter-integration = "0.7.3"
+uuid = { version = "1.4", features = ["v4"] }
+
