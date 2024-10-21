@@ -8,7 +8,7 @@ use tokio::{
 
 use crate::{
     feed::{self, actor::FeedData},
-    market::market::{MarketResponses, MarketService, MarketSessionHandle},
+    market::market::{ExecutionType, MarketResponses, MarketService, MarketSessionHandle, Side},
 };
 
 pub struct AlgoService {
@@ -72,18 +72,14 @@ impl AlgoContext {
         }
     }
 
-    pub async fn handle(&mut self, feed_update: FeedData) {
-        // println!("Handling feed update in AlgoContext");
+    pub async fn handle_feed_update(&mut self, feed_update: FeedData) {
         self.algo.handle(feed_update).await;
     }
 
-    pub async fn handle2(&mut self, market_response: MarketResponses) {
-        println!("Handling feed update in AlgoContext");
-        // self.algo.handle(feed_update).await;
-        match market_response {
-            MarketResponses::CreateOrderAck(message) => self.algo.create_order_ack(message).await,
-            _ => (),
-        }
+    pub fn handle_market_reponse(&mut self, market_response: MarketResponses) {
+        println!("Handling market response in AlgoContext");
+
+        self.algo.handle_market_reponse(market_response);
     }
 }
 
@@ -91,19 +87,16 @@ async fn run_my_actor(mut actor: AlgoContext) {
     loop {
         tokio::select! {
             Some(_msg) = actor.receiver.recv() => {
-                // actor.handle_message(msg).await;
                 println!("U algoContextu siu");
 
             },
             Some(_msg) = actor.feed_receiver.recv() => {
-                // println!("U algoContextu feed siu");
-                actor.handle(_msg).await;
+                actor.handle_feed_update(_msg).await;
 
 
             },
             Some(_msg) = actor.market_receiver.recv() => {
-                // println!("U algoContextu feed siu");
-                actor.handle2(_msg).await;
+                actor.handle_market_reponse(_msg);
 
 
             },
@@ -117,16 +110,6 @@ struct SniperAlgo {
 }
 
 impl SniperAlgo {
-    // pub async fn new(feed_service: FeedService) -> Self {
-    //     let (sender, receiver) = mpsc::channel(100);
-
-    //     let actor = FeedActor::new(receiver, binance_l1_stream, binance_l2_stream);
-
-    //     tokio::spawn(run_my_actor(actor));
-
-    //     Self { sender }
-    // }
-
     pub async fn handle(&mut self, feed_update: FeedData) {
         // println!("Handling L1 update, sending order to market");
         match feed_update {
@@ -134,10 +117,15 @@ impl SniperAlgo {
                 if !self.order_sent {
                     println!("MarketEvent<OrderBook>: {data:?}");
                 }
-                if data.kind.best_bid.price <= 66000.04f64 && !self.order_sent {
+                if data.kind.best_ask.price <= 69350.04f64 && !self.order_sent {
                     println!("Saljem order");
                     self.order_sent = true;
-                    self.market_sevice.create_order(66000.04f64);
+                    self.market_sevice.create_ioc_order(
+                        "BTCUSDT",
+                        69350.04_f64,
+                        0.000164_f64,
+                        Side::Buy,
+                    );
                 } else if !self.order_sent {
                     println!("Cijena je previsoka da reagujem");
                 }
@@ -146,8 +134,222 @@ impl SniperAlgo {
         }
     }
 
-    pub async fn create_order_ack(&mut self, siu: String) {
-        println!("Create Order ack from sniper");
+    fn handle_market_reponse(&mut self, event: MarketResponses) {
+        match event {
+            MarketResponses::CreateOrderAck {
+                order_id,
+                symbol,
+                execution_status,
+                order_quantity,
+                price,
+                side,
+            } => self.handle_create_order_ack(
+                order_id,
+                symbol,
+                execution_status,
+                order_quantity,
+                price,
+                side,
+            ),
+            MarketResponses::OrderPartiallyFilled {
+                order_id,
+                symbol,
+                execution_status,
+                quantity,
+                fill_price,
+                side,
+                executed_quantity,
+                cumulative_quantity,
+                leaves_quantity,
+            } => self.handle_order_partially_filled(
+                order_id,
+                symbol,
+                execution_status,
+                quantity,
+                fill_price,
+                side,
+                executed_quantity,
+                cumulative_quantity,
+                leaves_quantity,
+            ),
+            MarketResponses::OrderFullyFilled {
+                order_id,
+                symbol,
+                execution_status,
+                quantity,
+                fill_price,
+                side,
+                executed_quantity,
+                cumulative_quantity,
+                leaves_quantity,
+            } => self.handle_order_fully_filled(
+                order_id,
+                symbol,
+                execution_status,
+                quantity,
+                fill_price,
+                side,
+                executed_quantity,
+                cumulative_quantity,
+                leaves_quantity,
+            ),
+            MarketResponses::OrderExpired {
+                order_id,
+                symbol,
+                execution_status,
+                quantity,
+                side,
+                executed_quantity,
+                cumulative_quantity,
+                leaves_quantity,
+            } => self.handle_order_expired(
+                order_id,
+                symbol,
+                execution_status,
+                quantity,
+                side,
+                executed_quantity,
+                cumulative_quantity,
+                leaves_quantity,
+            ),
+            MarketResponses::OrderRejected {
+                order_id,
+                symbol,
+                execution_status,
+                order_quantity,
+                price,
+                side,
+                rejection_reason,
+            } => self.handle_order_rejected(
+                order_id,
+                symbol,
+                execution_status,
+                order_quantity,
+                price,
+                side,
+                rejection_reason,
+            ),
+            MarketResponses::OrderCanceled {
+                order_id,
+                symbol,
+                execution_status,
+                quantity,
+                side,
+                executed_quantity,
+                cumulative_quantity,
+                leaves_quantity,
+            } => self.handle_order_canceled(
+                order_id,
+                symbol,
+                execution_status,
+                quantity,
+                side,
+                executed_quantity,
+                cumulative_quantity,
+                leaves_quantity,
+            ),
+        }
+    }
+
+    fn handle_create_order_ack(
+        &mut self,
+        order_id: String,
+        symbol: String,
+        execution_status: ExecutionType,
+        order_quantity: f64,
+        price: f64,
+        side: Side,
+    ) {
+        println!(
+            "CreateOrderAck: order_id = {}, symbol = {}, execution_status = {:?}, order_quantity = {}, price = {}, side = {}",
+            order_id, symbol, execution_status, order_quantity, price, side
+        );
+    }
+
+    fn handle_order_partially_filled(
+        &mut self,
+        order_id: String,
+        symbol: String,
+        execution_status: ExecutionType,
+        quantity: f64,
+        fill_price: f64,
+        side: Side,
+        executed_quantity: f64,
+        cumulative_quantity: f64,
+        leaves_quantity: f64,
+    ) {
+        println!(
+            "OrderPartiallyFilled: order_id = {}, symbol = {}, execution_status = {:?}, quantity = {}, fill_price = {}, side = {}, executed_quantity = {}, cumulative_quantity = {}, leaves_quantity = {}",
+            order_id, symbol, execution_status, quantity, fill_price, side, executed_quantity, cumulative_quantity, leaves_quantity
+        );
+    }
+
+    fn handle_order_fully_filled(
+        &mut self,
+        order_id: String,
+        symbol: String,
+        execution_status: ExecutionType,
+        quantity: f64,
+        fill_price: f64,
+        side: Side,
+        executed_quantity: f64,
+        cumulative_quantity: f64,
+        leaves_quantity: f64,
+    ) {
+        println!(
+            "OrderFullyFilled: order_id = {}, symbol = {}, execution_status = {:?}, quantity = {}, fill_price = {}, side = {}, executed_quantity = {}, cumulative_quantity = {}, leaves_quantity = {}",
+            order_id, symbol, execution_status, quantity, fill_price, side, executed_quantity, cumulative_quantity, leaves_quantity
+        );
+    }
+
+    fn handle_order_expired(
+        &mut self,
+        order_id: String,
+        symbol: String,
+        execution_status: ExecutionType,
+        quantity: f64,
+        side: Side,
+        executed_quantity: f64,
+        cumulative_quantity: f64,
+        leaves_quantity: f64,
+    ) {
+        println!(
+            "OrderExpired: order_id = {}, symbol = {}, execution_status = {:?}, quantity = {}, side = {}, executed_quantity = {}, cumulative_quantity = {}, leaves_quantity = {}",
+            order_id, symbol, execution_status, quantity, side, executed_quantity, cumulative_quantity, leaves_quantity
+        );
+    }
+
+    fn handle_order_rejected(
+        &mut self,
+        order_id: String,
+        symbol: String,
+        execution_status: ExecutionType,
+        order_quantity: f64,
+        price: f64,
+        side: Side,
+        rejection_reason: String,
+    ) {
+        println!(
+            "OrderRejected: order_id = {}, symbol = {}, execution_status = {:?}, order_quantity = {}, price = {}, side = {}, rejection_reason = {}",
+            order_id, symbol, execution_status, order_quantity, price, side, rejection_reason
+        );
+    }
+
+    fn handle_order_canceled(
+        &mut self,
+        order_id: String,
+        symbol: String,
+        execution_status: ExecutionType,
+        quantity: f64,
+        side: Side,
+        executed_quantity: f64,
+        cumulative_quantity: f64,
+        leaves_quantity: f64,
+    ) {
+        println!(
+            "OrderCanceled: order_id = {}, symbol = {}, execution_status = {:?}, quantity = {}, side = {}, executed_quantity = {}, cumulative_quantity = {}, leaves_quantity = {}",
+            order_id, symbol, execution_status, quantity, side, executed_quantity, cumulative_quantity, leaves_quantity
+        );
     }
 
     pub fn new(market_sevice: MarketService) -> Self {
