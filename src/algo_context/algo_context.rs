@@ -1,78 +1,88 @@
 use std::sync::Arc;
 
-use feed::actor::{Feed, FeedMessages, FeedService};
+use feed::actor::{Feed, FeedHandle, FeedMessages};
 use tokio::{
     sync::{mpsc, Mutex},
     task,
 };
 
 use crate::{
-    feed::{self, actor::FeedData},
+    feed::{
+        self,
+        actor::{FeedService, FeedUpdate},
+    },
     market::market::{ExecutionType, MarketResponses, MarketService, MarketSessionHandle, Side},
 };
 
 pub struct AlgoService {
-    feed_service: FeedService,
     sender: mpsc::Sender<FeedMessages>,
-    feed_sender: mpsc::Sender<FeedData>,
-    market_sender: mpsc::Sender<MarketResponses>,
 }
 
 impl AlgoService {
-    pub async fn new(
-        mut feed_service: FeedService,
-        mut market_session_handle: MarketSessionHandle,
-    ) -> Self {
+    pub async fn new(feed_handle: FeedHandle, market_session_handle: MarketSessionHandle) -> Self {
         let (sender, receiver) = mpsc::channel(10);
-        let (feed_sender, feed_receiver) = mpsc::channel(10);
-        let (market_sender, market_receiver) = mpsc::channel(10);
 
-        let market_service = MarketService::new(market_session_handle, market_sender.clone());
-
-        let actor = AlgoContext::new(receiver, feed_receiver, market_receiver, market_service);
-
-        feed_service
-            .subscribe("btc", "usdt", feed_sender.clone())
-            .await;
+        let actor = AlgoContext::new(receiver, feed_handle, market_session_handle);
 
         tokio::spawn(run_my_actor(actor));
 
-        Self {
-            feed_service,
-            sender,
-            feed_sender,
-            market_sender,
-        }
+        Self { sender }
     }
 }
 
 struct AlgoContext {
+    algo_context_id: String,
     receiver: mpsc::Receiver<FeedMessages>,
-    feed_receiver: mpsc::Receiver<FeedData>,
+    feed_sender: mpsc::Sender<FeedUpdate>,
+    feed_receiver: mpsc::Receiver<FeedUpdate>,
+    market_sender: mpsc::Sender<MarketResponses>,
     market_receiver: mpsc::Receiver<MarketResponses>,
     handles: Vec<task::JoinHandle<()>>,
     algo: SniperAlgo,
-    market_sevice: MarketService,
+    feed_hadnle: FeedHandle,
+    market_session_handle: MarketSessionHandle,
 }
 
 impl AlgoContext {
     pub fn new(
         receiver: mpsc::Receiver<FeedMessages>,
-        feed_receiver: mpsc::Receiver<FeedData>,
-        market_receiver: mpsc::Receiver<MarketResponses>,
-        market_sevice: MarketService,
+        feed_hadnle: FeedHandle,
+        market_session_handle: MarketSessionHandle,
     ) -> Self {
+        let (feed_sender, feed_receiver) = mpsc::channel(10);
+        let (market_sender, market_receiver) = mpsc::channel(10);
+
+        let market_service = MarketService::new(
+            market_session_handle.clone(),
+            market_sender.clone(),
+            String::from("algoId"),
+        );
+
+        let algo_context_id = String::from("contextId");
+        let algo_id = String::from("algo_id");
+
+        let feed_service = FeedService::new(
+            feed_hadnle.clone(),
+            algo_context_id.clone(),
+            algo_id.clone(),
+            feed_sender.clone(),
+        );
+
         Self {
+            algo_context_id,
             receiver,
+            feed_sender,
             feed_receiver,
+            market_sender,
             market_receiver,
             handles: Vec::new(),
-            algo: SniperAlgo::new(market_sevice.clone()),
-            market_sevice,
+            algo: SniperAlgo::new(market_service, feed_service),
+            feed_hadnle,
+            market_session_handle,
         }
     }
 
-    pub async fn handle_feed_update(&mut self, feed_update: FeedData) {
+    pub async fn handle_feed_update(&mut self, feed_update: FeedUpdate) {
         self.algo.handle(feed_update).await;
     }
 
@@ -106,29 +116,30 @@ async fn run_my_actor(mut actor: AlgoContext) {
 }
 struct SniperAlgo {
     market_sevice: MarketService,
+    feed_service: FeedService,
     order_sent: bool,
 }
 
 impl SniperAlgo {
-    pub async fn handle(&mut self, feed_update: FeedData) {
+    pub async fn handle(&mut self, feed_update: FeedUpdate) {
         // println!("Handling L1 update, sending order to market");
         match feed_update {
-            FeedData::L1Data(data) => {
+            FeedUpdate::L1Update(algo_ids, data) => {
                 if !self.order_sent {
-                    println!("MarketEvent<OrderBook>: {data:?}");
+                    println!("{}", data);
                 }
-                if data.kind.best_ask.price <= 69350.04f64 && !self.order_sent {
-                    println!("Saljem order");
-                    self.order_sent = true;
-                    self.market_sevice.create_ioc_order(
-                        "BTCUSDT",
-                        69350.04_f64,
-                        0.000164_f64,
-                        Side::Buy,
-                    );
-                } else if !self.order_sent {
-                    println!("Cijena je previsoka da reagujem");
-                }
+                // if data.best_ask_level.price <= 66600.04f64 && !self.order_sent {
+                //     println!("Saljem order");
+                //     self.order_sent = true;
+                //     self.market_sevice.create_ioc_order(
+                //         "BTCUSDT",
+                //         66600.04_f64,
+                //         0.0001_f64,
+                //         Side::Buy,
+                //     );
+                // } else if !self.order_sent {
+                //     println!("Cijena je previsoka da reagujem");
+                // }
             }
             _ => println!("Siu"),
         }
@@ -352,9 +363,12 @@ impl SniperAlgo {
         );
     }
 
-    pub fn new(market_sevice: MarketService) -> Self {
+    pub fn new(market_sevice: MarketService, feed_service: FeedService) -> Self {
+        feed_service.subscribe_to_l1("btc", "usdt");
+
         Self {
             market_sevice,
+            feed_service,
             order_sent: false,
         }
     }

@@ -2,7 +2,7 @@ use core::task;
 use std::{collections::HashSet, thread, time::Duration};
 
 use algo_context::algo_context::AlgoService;
-use feed::actor::{Feed, FeedMessages, FeedService};
+use feed::actor::{Feed, FeedHandle, FeedMessages};
 use market::market::MarketSessionHandle;
 use ractor::Actor;
 mod algo_context;
@@ -18,7 +18,7 @@ async fn main() {
     // trading_pairs.insert(("eth", "usdt"));
     // trading_pairs.insert(("sol", "usdt"));
 
-    let mut feed_service = FeedService::new(trading_pairs).await;
+    let mut feed_service = FeedHandle::new(trading_pairs).await;
 
     let mut market_service = MarketSessionHandle::new().await;
 

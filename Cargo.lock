@@ -1792,6 +1792,7 @@ dependencies = [
  "barter-data",
  "barter-integration",
  "binance",
+ "futures",
  "ractor",
  "tokio",
  "uuid",

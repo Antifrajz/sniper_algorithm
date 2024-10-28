@@ -129,6 +129,7 @@ pub enum MarketMessages {
         TIF,
         mpsc::Sender<MarketResponses>,
         String,
+        String,
     ),
 }
 
@@ -316,6 +317,7 @@ impl MarketSessionHandle {
         time_inforce: TIF,
         meesage_sender: mpsc::Sender<MarketResponses>,
         cl_order_id: String,
+        algo_id: String,
     ) {
         self.sender
             .try_send(MarketMessages::CreateOrder(
@@ -326,6 +328,7 @@ impl MarketSessionHandle {
                 time_inforce,
                 meesage_sender,
                 cl_order_id,
+                algo_id,
             ))
             .unwrap();
     }
@@ -336,7 +339,7 @@ struct MarketSession {
     handles: Vec<task::JoinHandle<()>>,
     account: Account,
     sender: mpsc::Sender<MarketMessages>,
-    algo_contexts: Arc<std::sync::Mutex<HashMap<String, mpsc::Sender<MarketResponses>>>>,
+    algo_contexts: Arc<std::sync::Mutex<HashMap<String, (String, mpsc::Sender<MarketResponses>)>>>,
 }
 
 impl MarketSession {
@@ -370,12 +373,21 @@ impl MarketSession {
 
     pub async fn handle(&mut self, market_message: MarketMessages) {
         match market_message {
-            MarketMessages::CreateOrder(symbol, price, quantity, side, tif, sender, order_id) => {
+            MarketMessages::CreateOrder(
+                symbol,
+                price,
+                quantity,
+                side,
+                tif,
+                sender,
+                order_id,
+                algo_id,
+            ) => {
                 let account2 = self.account.clone();
                 let order_side = OrderSide::from_int(side.to_int()).unwrap();
                 let time_in_force = TimeInForce::from_int(tif.to_int()).unwrap();
                 let mut algo_contexts = self.algo_contexts.lock().unwrap(); // Lock the mutex (blocking)
-                algo_contexts.insert(order_id.clone(), sender.clone());
+                algo_contexts.insert(order_id.clone(), (algo_id, sender.clone()));
                 task::spawn_blocking(move || {
                     match account2.create_order(
                         symbol.clone(),
@@ -430,7 +442,7 @@ async fn run_my_actor(mut actor: MarketSession) {
                         );
 
                         let algo_contexts = algo_contexts.lock().unwrap();
-                        let algo = algo_contexts.get(&trade.new_client_order_id).unwrap();
+                        let (_, algo) = algo_contexts.get(&trade.new_client_order_id).unwrap();
                         handle_order_trade_event(algo, trade);
                     }
                     _ => (),
@@ -459,16 +471,19 @@ async fn run_my_actor(mut actor: MarketSession) {
 pub struct MarketService {
     market_session_handle: MarketSessionHandle,
     meesage_sender: mpsc::Sender<MarketResponses>,
+    algo_id: String,
 }
 
 impl MarketService {
     pub fn new(
         market_session_handle: MarketSessionHandle,
         meesage_sender: mpsc::Sender<MarketResponses>,
+        algo_id: String,
     ) -> Self {
         Self {
             market_session_handle,
             meesage_sender,
+            algo_id,
         }
     }
 
@@ -506,6 +521,7 @@ impl MarketService {
             time_inforce,
             self.meesage_sender.clone(),
             random_id,
+            self.algo_id.clone(),
         );
     }
 }
