@@ -1,0 +1,53 @@
+[[algorithms]]
+algo_type = "sniper"
+algo_id = "sniper_1"
+side = "sell"
+quantity = 0.05
+price = 76480
+base = "btc"
+quote = "usdt"
+
+# [[algorithms]]
+# algo_type = "sniper"
+# algo_id = "sniper_2"
+# side = "sell"
+# quantity = 0.05
+# price = 75500
+# base = "btc"
+# quote = "usdt"
+
+# [[algorithms]]
+# algo_type = "sniper"
+# algo_id = "sniper_3"
+# side = "buy"
+# quantity = 0.05
+# price = 68500
+# base = "btc"
+# quote = "usdt"
+
+# [[algorithms]]
+# algo_type = "sniper"
+# algo_id = "sniper_4"
+# side = "sell"
+# quantity = 0.05
+# price = 75500
+# base = "btc"
+# quote = "usdt"
+
+# [[algorithms]]
+# algo_type = "sniper"
+# algo_id = "sniper_5"
+# side = "buy"
+# quantity = 0.05
+# price = 68500
+# base = "btc"
+# quote = "usdt"
+
+# [[algorithms]]
+# algo_type = "sniper"
+# algo_id = "sniper_6"
+# side = "sell"
+# quantity = 0.05
+# price = 75500
+# base = "btc"
+# quote = "usdt"

@@ -9,6 +9,11 @@ use barter_data::subscription::book::{OrderBook, OrderBookL1, OrderBooksL1, Orde
 use barter_integration::model::instrument::kind::InstrumentKind;
 use barter_integration::model::instrument::symbol::Symbol;
 use barter_integration::model::instrument::{symbol, Instrument};
+use rust_decimal::prelude::ToPrimitive;
+use rust_decimal::{
+    prelude::{FromPrimitive, Zero},
+    Decimal,
+};
 use std::collections::{HashMap, HashSet};
 use std::future::Future;
 
@@ -65,19 +70,16 @@ impl FeedState {
 
 pub struct Level {
     pub level: i32,
-    pub quantity: f64,
-    pub price: f64,
+    pub quantity: Decimal,
+    pub price: Decimal,
 }
 
 impl Level {
-    pub fn new<Decimal>(level: i32, quantity: Decimal, price: Decimal) -> Self
-    where
-        Decimal: Into<f64>,
-    {
+    pub fn new(level: i32, quantity: Decimal, price: Decimal) -> Self {
         Level {
             level: level,
-            quantity: quantity.into(),
-            price: price.into(),
+            quantity: quantity,
+            price: price,
         }
     }
 }
@@ -100,7 +102,7 @@ pub struct L1Data {
 }
 
 impl L1Data {
-    pub fn new<Symbol, Decimal>(
+    pub fn new<Symbol>(
         symbol: Symbol,
         best_bid_quantity: Decimal,
         best_bid_price: Decimal,
@@ -109,12 +111,11 @@ impl L1Data {
     ) -> Self
     where
         Symbol: Into<String>,
-        Decimal: Into<f64>,
     {
         L1Data {
             symbol: symbol.into(),
-            best_bid_level: Level::new(1, best_bid_quantity.into(), best_bid_price.into()),
-            best_ask_level: Level::new(1, best_ask_quantity.into(), best_ask_price.into()),
+            best_bid_level: Level::new(1, best_bid_quantity, best_bid_price),
+            best_ask_level: Level::new(1, best_ask_quantity, best_ask_price),
         }
     }
 }
@@ -218,6 +219,12 @@ pub enum FeedMessages {
         quote: String,
         subscriber: TrackedSender<FeedUpdate>,
     },
+    UnsubscribeFromL1 {
+        algo_id: String,
+        base: String,
+        quote: String,
+        subscriber: TrackedSender<FeedUpdate>,
+    },
     Unsubscribe,
 }
 
@@ -272,6 +279,31 @@ impl FeedActor {
                     senders_map.insert(subscriber, vec![algo_id]);
                 }
             }
+
+            FeedMessages::UnsubscribeFromL1 {
+                algo_id,
+                base,
+                quote,
+                subscriber,
+            } => {
+                let mut subscribers = self.l1_subscribers.lock().await;
+                let instrument = base + quote.as_str();
+
+                if let Some(senders_map) = subscribers.get_mut(&instrument) {
+                    if let Some(algo_ids) = senders_map.get_mut(&subscriber) {
+                        algo_ids.retain(|id| id != &algo_id);
+
+                        if algo_ids.is_empty() {
+                            senders_map.remove(&subscriber);
+                        }
+
+                        if senders_map.is_empty() {
+                            subscribers.remove(&instrument);
+                        }
+                    }
+                }
+            }
+
             _ => {
                 msg.print();
             }
@@ -388,6 +420,28 @@ impl FeedHandle {
             eprintln!("Failed to send message: {:?}", sending_result);
         }
     }
+
+    pub fn unsubscribe_from_l1<Symbol, AlgoId>(
+        &self,
+        algo_id: AlgoId,
+        base: Symbol,
+        quote: Symbol,
+        subscriber: TrackedSender<FeedUpdate>,
+    ) where
+        AlgoId: Into<String>,
+        Symbol: Into<String>,
+    {
+        let sending_result = self.sender.try_send(FeedMessages::UnsubscribeFromL1 {
+            algo_id: algo_id.into(),
+            base: base.into(),
+            quote: quote.into(),
+            subscriber,
+        });
+
+        if sending_result.is_err() {
+            eprintln!("Failed to send message: {:?}", sending_result);
+        }
+    }
 }
 
 async fn run_my_actor(mut actor: FeedActor) {
@@ -403,10 +457,10 @@ async fn run_my_actor(mut actor: FeedActor) {
             if let Some(senders_map) = subscribers.get(&instrument) {
                 let l1_data = L1Data::new(
                     instrument.clone(),
-                    msg.kind.best_bid.amount,
-                    msg.kind.best_bid.price,
-                    msg.kind.best_ask.amount,
-                    msg.kind.best_ask.price,
+                    Decimal::from_f64(msg.kind.best_bid.amount).unwrap(),
+                    Decimal::from_f64(msg.kind.best_bid.price).unwrap(),
+                    Decimal::from_f64(msg.kind.best_ask.amount).unwrap(),
+                    Decimal::from_f64(msg.kind.best_ask.price).unwrap(),
                 );
                 let send_futures: Vec<_> = senders_map
                     .iter()
@@ -445,14 +499,26 @@ async fn run_my_actor(mut actor: FeedActor) {
                     .levels
                     .iter()
                     .enumerate()
-                    .map(|(i, l)| Level::new(i as i32 + 1, l.amount, l.price))
+                    .map(|(i, l)| {
+                        Level::new(
+                            i as i32 + 1,
+                            Decimal::from_f64(l.amount).unwrap(),
+                            Decimal::from_f64(l.price).unwrap(),
+                        )
+                    })
                     .collect(),
                 msg.kind
                     .asks
                     .levels
                     .iter()
                     .enumerate()
-                    .map(|(i, l)| Level::new(i as i32 + 1, l.amount, l.price))
+                    .map(|(i, l)| {
+                        Level::new(
+                            i as i32 + 1,
+                            Decimal::from_f64(l.amount).unwrap(),
+                            Decimal::from_f64(l.price).unwrap(),
+                        )
+                    })
                     .collect(),
             );
 
@@ -509,6 +575,18 @@ impl FeedService {
         Symbol: Into<String>,
     {
         self.feed_handle.subscribe_to_l1(
+            self.algo_id.as_str(),
+            base.into(),
+            quote.into(),
+            self.meesage_sender.clone(),
+        );
+    }
+
+    pub fn unsubscribe_from_l1<Symbol>(&self, base: Symbol, quote: Symbol)
+    where
+        Symbol: Into<String>,
+    {
+        self.feed_handle.unsubscribe_from_l1(
             self.algo_id.as_str(),
             base.into(),
             quote.into(),

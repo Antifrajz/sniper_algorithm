@@ -6,7 +6,6 @@ edition = "2021"
 [dependencies]
 barter-data = "0.8.1"
 binance = "0.21.0"
-ractor = "0.10"
 tokio = { version = "1", features = [
     "rt",
     "time",
@@ -19,3 +18,14 @@ tokio = { version = "1", features = [
 barter-integration = "0.7.3"
 uuid = { version = "1.4", features = ["v4"] }
 futures = "0.3"
+rust_decimal = "1.28"
+async-trait = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.5"
+dotenv = "0.15"
+log = "0.4"
+flexi_logger = "0.22"
+printpdf = "0.3"
+chrono = "0.4"
+time = "0.3"
+rusttype = "0.9"

@@ -1,30 +1,49 @@
 use core::task;
-use std::{collections::HashSet, thread, time::Duration};
+use std::{collections::HashSet, process, thread, time::Duration};
+mod logging;
 
 use algo_context::algo_context::AlgoService;
 use feed::actor::{Feed, FeedHandle, FeedMessages};
+use logging::algo_logger::AlgoLogger;
 use market::market::MarketSessionHandle;
-use ractor::Actor;
 mod algo_context;
+mod config;
 mod market;
+use config::{AlgorithmConfig, MarketConfig}; // Use the Config struct
 
 mod feed;
-// MAIN //
 #[tokio::main(flavor = "multi_thread", worker_threads = 4)]
 async fn main() {
-    let mut trading_pairs: HashSet<(&str, &str)> = HashSet::new();
+    let config = match AlgorithmConfig::load_from_file("config/config.toml") {
+        Ok(config) => {
+            println!("{:#?}", config);
+            config
+        }
+        Err(e) => {
+            eprintln!("Failed to load config: {}", e);
+            process::exit(1);
+        }
+    };
 
-    trading_pairs.insert(("btc", "usdt"));
-    // trading_pairs.insert(("eth", "usdt"));
-    // trading_pairs.insert(("sol", "usdt"));
+    let market_config = match MarketConfig::from_env() {
+        Ok(config) => config,
+        Err(e) => {
+            eprintln!("Failed to load market config: {}", e);
+            process::exit(1);
+        }
+    };
 
-    let mut feed_service = FeedHandle::new(trading_pairs).await;
+    AlgoLogger::init_once().expect("Failed to initialize logger");
 
-    let mut market_service = MarketSessionHandle::new().await;
+    let feed_service = FeedHandle::new(config::extract_trading_pairs(&config.algorithms)).await;
 
-    let mut algo_service = AlgoService::new(feed_service.clone(), market_service.clone()).await;
+    let market_service = MarketSessionHandle::new(market_config).await;
+
+    let algo_service = AlgoService::new(feed_service.clone(), market_service.clone()).await;
+
+    for params in &config.algorithms {
+        algo_service.create_algo(params.clone());
+    }
 
     thread::sleep(Duration::from_secs(3000));
-
-    // actor_handle.await.expect("Actor failed to exit cleanly");
 }
