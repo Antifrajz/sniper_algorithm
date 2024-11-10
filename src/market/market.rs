@@ -4,6 +4,7 @@ use std::{
     sync::Arc,
 };
 
+use barter_integration::model::instrument::symbol;
 use serde::Deserialize;
 use tokio::{
     sync::{mpsc, Mutex},
@@ -16,7 +17,7 @@ use rust_decimal::{
 };
 
 use binance::{
-    account::{self, Account, OrderSide, TimeInForce},
+    account::{self, Account, OrderSide, OrderType as BinanceOrderType, TimeInForce},
     futures::general,
     general::General,
     model::Filters,
@@ -160,22 +161,72 @@ impl FromStr for TIF {
     }
 }
 
+#[derive(Debug)]
+pub enum OrderType {
+    Limit,
+    Market,
+    StopLossLimit,
+}
+
+impl OrderType {
+    pub fn from_int(value: i32) -> Option<Self> {
+        match value {
+            1 => Some(OrderType::Limit),
+            2 => Some(OrderType::Market),
+            3 => Some(OrderType::StopLossLimit),
+            _ => None,
+        }
+    }
+
+    pub fn to_int(&self) -> i32 {
+        match self {
+            OrderType::Limit => 1,
+            OrderType::Market => 2,
+            OrderType::StopLossLimit => 3,
+        }
+    }
+}
+
+impl Display for OrderType {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Limit => write!(f, "LIMIT"),
+            Self::Market => write!(f, "MARKET"),
+            Self::StopLossLimit => write!(f, "STOP_LOSS_LIMIT"),
+        }
+    }
+}
+
+impl FromStr for OrderType {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s.to_uppercase().as_str() {
+            "LIMIT" => Ok(OrderType::Limit),
+            "MARKET" => Ok(OrderType::Market),
+            "STOP_LOSS_LIMIT" => Ok(OrderType::StopLossLimit),
+            _ => Err(()),
+        }
+    }
+}
+
 pub enum MarketMessages {
     GetSymbolInformation {
         symbol: String,
         algo_id: String,
         sender: mpsc::Sender<MarketResponses>,
     },
-    CreateOrder(
-        String,
-        Decimal,
-        Decimal,
-        Side,
-        TIF,
-        mpsc::Sender<MarketResponses>,
-        String,
-        String,
-    ),
+    CreateOrder {
+        symbol: String,
+        price: Decimal,
+        quantity: Decimal,
+        side: Side,
+        order_type: OrderType,
+        time_in_force: TIF,
+        sender: mpsc::Sender<MarketResponses>,
+        order_id: String,
+        algo_id: String,
+    },
 }
 
 pub enum MarketResponses {
@@ -196,6 +247,7 @@ pub enum MarketResponses {
         order_quantity: Decimal,
         price: Decimal,
         side: Side,
+        order_type: OrderType,
         time_in_force: TIF,
     },
     OrderPartiallyFilled {
@@ -241,6 +293,7 @@ pub enum MarketResponses {
         order_quantity: Decimal,
         price: Decimal,
         side: Side,
+        order_type: OrderType,
         rejection_reason: String,
         time_in_force: TIF,
     },
@@ -298,12 +351,13 @@ impl fmt::Display for MarketResponses {
                 order_quantity,
                 price,
                 side,
+                order_type,
                 time_in_force,
             } => {
                 write!(
                     f,
-                    "CreateOrderAck {{ order_id: {}, algo_id: {}, symbol: {}, execution_status: {}, order_quantity: {}, price: {}, side: {}, time_in_force: {} }}",
-                    order_id, algo_id, symbol, execution_status, order_quantity, price, side,time_in_force
+                    "CreateOrderAck {{ order_id: {}, algo_id: {}, symbol: {}, execution_status: {}, order_quantity: {}, price: {}, side: {}, time_in_force: {}, order_type: {} }}",
+                    order_id, algo_id, symbol, execution_status, order_quantity, price, side,time_in_force, order_type
                 )
             }
             MarketResponses::OrderPartiallyFilled {
@@ -367,13 +421,14 @@ impl fmt::Display for MarketResponses {
                 order_quantity,
                 price,
                 side,
+                order_type,
                 rejection_reason,
                 time_in_force,
             } => {
                 write!(
                     f,
-                    "OrderRejected {{ order_id: {}, algo_id: {}, symbol: {}, execution_status: {}, order_quantity: {}, price: {}, side: {}, time_in_force:{} rejection_reason: {} }}",
-                    order_id, algo_id, symbol, execution_status, order_quantity, price, side,time_in_force, rejection_reason
+                    "OrderRejected {{ order_id: {}, algo_id: {}, symbol: {}, execution_status: {}, order_quantity: {}, price: {}, side: {}, time_in_force: {}, order_type: {} , rejection_reason: {} }}",
+                    order_id, algo_id, symbol, execution_status, order_quantity, price, side,time_in_force,order_type, rejection_reason
                 )
             }
             MarketResponses::OrderCanceled {
@@ -426,7 +481,8 @@ fn handle_order_trade_event(
                 symbol: event.symbol,
                 execution_status: execution_type,
                 order_quantity: event.qty.parse::<Decimal>().unwrap(),
-                side: Side::from_str(&event.side).unwrap(),
+                side: Side::from_str(&event.side).unwrap_or(Side::Buy),
+                order_type: OrderType::from_str(&event.order_type).unwrap_or(OrderType::Limit),
                 price: event.price.parse::<Decimal>().unwrap(),
                 time_in_force: TIF::from_str(&event.time_in_force).unwrap_or(TIF::GTC),
             })
@@ -485,7 +541,10 @@ fn handle_order_trade_event(
                     .parse::<Decimal>()
                     .unwrap(),
                 leaves_quantity: event.qty.parse::<Decimal>().unwrap()
-                    - event.qty_last_filled_trade.parse::<Decimal>().unwrap(),
+                    - event
+                        .accumulated_qty_filled_trades
+                        .parse::<Decimal>()
+                        .unwrap(),
             })
             .unwrap();
         }
@@ -496,7 +555,8 @@ fn handle_order_trade_event(
                 symbol: event.symbol,
                 execution_status: execution_type,
                 order_quantity: event.qty.parse::<Decimal>().unwrap(),
-                side: Side::from_str(&event.side).unwrap(),
+                side: Side::from_str(&event.side).unwrap_or(Side::Buy),
+                order_type: OrderType::from_str(&event.order_type).unwrap_or(OrderType::Limit),
                 price: event.price.parse::<Decimal>().unwrap(),
                 rejection_reason: event.order_reject_reason,
                 time_in_force: TIF::from_str(&event.time_in_force).unwrap_or(TIF::GTC),
@@ -548,22 +608,24 @@ impl MarketSessionHandle {
         price: Decimal,
         quantity: Decimal,
         side: Side,
-        time_inforce: TIF,
-        meesage_sender: mpsc::Sender<MarketResponses>,
-        cl_order_id: String,
+        order_type: OrderType,
+        time_in_force: TIF,
+        sender: mpsc::Sender<MarketResponses>,
+        order_id: String,
         algo_id: String,
     ) {
         self.sender
-            .try_send(MarketMessages::CreateOrder(
+            .try_send(MarketMessages::CreateOrder {
                 symbol,
                 price,
                 quantity,
                 side,
-                time_inforce,
-                meesage_sender,
-                cl_order_id,
+                order_type,
+                time_in_force,
+                sender,
+                order_id,
                 algo_id,
-            ))
+            })
             .unwrap();
     }
 
@@ -588,6 +650,7 @@ struct MarketSession {
     handles: Vec<task::JoinHandle<()>>,
     account: Account,
     general: General,
+    market_config: MarketConfig,
     sender: mpsc::Sender<MarketMessages>,
     algo_contexts: Arc<std::sync::Mutex<HashMap<String, (String, mpsc::Sender<MarketResponses>)>>>,
 }
@@ -598,10 +661,12 @@ impl MarketSession {
         receiver: mpsc::Receiver<MarketMessages>,
         sender: mpsc::Sender<MarketMessages>,
     ) -> Self {
-        let result = task::spawn_blocking(move || {
-            let api_key = Some(market_config.api_key.into());
-            let api_secret = Some(market_config.api_secret.into());
+        let api_key = Some(market_config.api_key.clone());
+        let api_secret = Some(market_config.api_secret.clone());
 
+        let result = task::spawn_blocking(move || {
+            // let api_key = Some(market_config.api_key.into());
+            // let api_secret = Some(market_config.api_secret.into());
             let config = Config::testnet();
             let user_stream: Account =
                 Binance::new_with_config(api_key.clone(), api_secret.clone(), &config);
@@ -619,6 +684,7 @@ impl MarketSession {
             handles: Vec::new(),
             account: account,
             general: general,
+            market_config,
             sender: sender,
             algo_contexts: Arc::new(std::sync::Mutex::new(HashMap::new())),
         }
@@ -693,29 +759,35 @@ impl MarketSession {
                 });
             }
 
-            MarketMessages::CreateOrder(
+            MarketMessages::CreateOrder {
                 symbol,
                 price,
                 quantity,
                 side,
+                order_type,
                 time_in_force,
                 sender,
                 order_id,
                 algo_id,
-            ) => {
+            } => {
                 let account2 = self.account.clone();
-                let order_side = OrderSide::from_int(side.to_int()).unwrap();
-                let time_in_force_int = TimeInForce::from_int(time_in_force.to_int()).unwrap();
+                let order_side = OrderSide::from_int(side.to_int()).unwrap_or(OrderSide::Buy);
+                let time_in_force_binance =
+                    TimeInForce::from_int(time_in_force.to_int()).unwrap_or(TimeInForce::GTC);
+                let order_type_binance = BinanceOrderType::from_int(order_type.to_int())
+                    .unwrap_or(BinanceOrderType::Limit);
                 let mut algo_contexts = self.algo_contexts.lock().unwrap();
                 algo_contexts.insert(order_id.clone(), (algo_id.clone(), sender.clone()));
                 task::spawn_blocking(move || {
-                    match account2.create_order(
+                    match account2.custom_order(
                         symbol.clone(),
                         quantity.clone().to_f64().unwrap(),
                         price.clone().to_f64().unwrap(),
+                        None,
                         order_side,
-                        time_in_force_int,
-                        order_id.clone(),
+                        order_type_binance,
+                        time_in_force_binance,
+                        Some(order_id.clone()),
                     ) {
                         Ok(_) => {}
                         Err(e) => {
@@ -724,11 +796,12 @@ impl MarketSession {
                                 .try_send(MarketResponses::OrderRejected {
                                     order_id,
                                     algo_id,
-                                    symbol: symbol,
+                                    symbol,
                                     execution_status: ExecutionType::Rejected,
                                     order_quantity: quantity,
-                                    side: side,
-                                    price: price,
+                                    side,
+                                    order_type,
+                                    price,
                                     time_in_force,
                                     rejection_reason: e.to_string(),
                                 })
@@ -743,12 +816,16 @@ impl MarketSession {
 
 async fn run_my_actor(mut actor: MarketSession) {
     let algo_contexts = actor.algo_contexts.clone();
+
+    let api_key = Some(actor.market_config.api_key.clone());
+    let api_secret = Some(actor.market_config.api_secret.clone());
+
     task::spawn_blocking(move || {
         let keep_running = AtomicBool::new(true); // Used to control the event loop
-        let api_key =
-            Some("8Rz2XDFFItHESqPZ7CUl3Gk4JyQU73jBsqMAEhOKaizD4Fx28ryWNQuOg9OMweND".into());
-        let api_secret =
-            Some("3Bo4CXMF95vj17hzREUxIzLP5wQfueU8YMplVREKr1pGQqCkBz088XOCw4N8mGV6".into());
+                                                  // let api_key =
+                                                  //     Some("8Rz2XDFFItHESqPZ7CUl3Gk4JyQU73jBsqMAEhOKaizD4Fx28ryWNQuOg9OMweND".into());
+                                                  // let api_secret =
+                                                  //     Some("3Bo4CXMF95vj17hzREUxIzLP5wQfueU8YMplVREKr1pGQqCkBz088XOCw4N8mGV6".into());
         let config = Config::testnet();
         let user_stream: UserStream = Binance::new_with_config(api_key, api_secret, &config);
 
@@ -819,7 +896,14 @@ impl MarketService {
     ) where
         Symbol: Into<String>,
     {
-        self.create_order(symbol.into(), price.into(), quantity.into(), side, TIF::IOC);
+        self.create_order(
+            symbol.into(),
+            price.into(),
+            quantity.into(),
+            side,
+            OrderType::Limit,
+            TIF::IOC,
+        );
     }
 
     pub fn create_order<Symbol>(
@@ -828,6 +912,7 @@ impl MarketService {
         price: Decimal,
         quantity: Decimal,
         side: Side,
+        order_type: OrderType,
         time_inforce: TIF,
     ) where
         Symbol: Into<String>,
@@ -839,6 +924,7 @@ impl MarketService {
             price.into(),
             quantity.into(),
             side,
+            order_type,
             time_inforce,
             self.meesage_sender.clone(),
             random_id,

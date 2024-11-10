@@ -25,7 +25,7 @@ use tokio::{
 use crate::config::{self, AlgoParameters};
 use crate::feed::actor::L2Data;
 use crate::logging::algo_report::AlgoPdfLogger;
-use crate::market::market::TIF;
+use crate::market::market::{OrderType, TIF};
 use crate::{
     feed::{
         self,
@@ -68,7 +68,6 @@ struct AlgoContext {
     feed_receiver: mpsc::Receiver<FeedUpdate>,
     market_sender: mpsc::Sender<MarketResponses>,
     market_receiver: mpsc::Receiver<MarketResponses>,
-    handles: Vec<task::JoinHandle<()>>,
     algorithams: HashMap<String, Arc<Mutex<Box<dyn Algorithm + Send>>>>,
     feed_hadnle: FeedHandle,
     market_session_handle: MarketSessionHandle,
@@ -92,7 +91,6 @@ impl AlgoContext {
             feed_receiver,
             market_sender,
             market_receiver,
-            handles: Vec::new(),
             algorithams: HashMap::new(),
             feed_hadnle,
             market_session_handle,
@@ -236,6 +234,7 @@ enum Event {
         order_quantity: Decimal,
         price: Decimal,
         side: Side,
+        order_type: OrderType,
         time_in_force: TIF,
     },
     CreateOrderRej {
@@ -245,6 +244,7 @@ enum Event {
         order_quantity: Decimal,
         price: Decimal,
         side: Side,
+        order_type: OrderType,
         rejection_reason: String,
         time_in_force: TIF,
     },
@@ -380,6 +380,7 @@ impl Algorithm for SniperAlgo {
                 order_quantity,
                 price,
                 side,
+                order_type,
                 time_in_force,
             } => self.on_event(Event::CreateOrderAck {
                 order_id,
@@ -388,6 +389,7 @@ impl Algorithm for SniperAlgo {
                 order_quantity,
                 price,
                 side,
+                order_type,
                 time_in_force,
             }),
             MarketResponses::OrderPartiallyFilled {
@@ -462,6 +464,7 @@ impl Algorithm for SniperAlgo {
                 order_quantity,
                 price,
                 side,
+                order_type,
                 rejection_reason,
                 time_in_force,
             } => self.on_event(Event::CreateOrderRej {
@@ -471,6 +474,7 @@ impl Algorithm for SniperAlgo {
                 order_quantity,
                 price,
                 side,
+                order_type,
                 rejection_reason,
                 time_in_force,
             }),
@@ -704,6 +708,7 @@ impl SniperAlgo {
                     order_quantity,
                     price,
                     side,
+                    order_type,
                     time_in_force,
                 },
             ) => {
@@ -711,24 +716,26 @@ impl SniperAlgo {
                     self.logger,
                     "CreateOrderAckEvent",
                     "Received Order Acknowledgment: Order ID {}, \
-                    Symbol {}, Side {}, Time In Force {}, Quantity {}, Price {}, with Status {}",
+                    Symbol {}, Side {}, Time In Force {}, Quantity {}, Price {},OrderType {}, with Status {}",
                     order_id,
                     symbol,
                     side,
                     time_in_force,
                     order_quantity,
                     price,
+                    order_type,
                     execution_status
                 );
 
                 report!(
                     self.pdf_report,
                     "Algorithm exposed a quantity of {} for Symbol {} at Price {} \
-                    with Time In Force {}",
+                    with Time In Force {} and Order Type {}",
                     order_quantity,
                     symbol,
                     price,
-                    time_in_force
+                    time_in_force,
+                    order_type
                 );
 
                 self.exposed_quantity += &order_quantity;
@@ -745,6 +752,7 @@ impl SniperAlgo {
                     order_quantity,
                     price,
                     side,
+                    order_type,
                     rejection_reason,
                     time_in_force,
                 },
@@ -754,24 +762,26 @@ impl SniperAlgo {
                     "CreateOrderRejEvent",
                     "Received a creation rejection while attempting \
                     to place an order: Order ID {}, Symbol {}, Side {}, \
-                    Quantity {}, Price {}, Status {}, Rejection Reason {}.",
+                    Quantity {}, Price {}, Status {}, Oreder Type {} and Rejection Reason {}.",
                     order_id,
                     symbol,
                     side,
                     order_quantity,
                     price,
                     execution_status,
+                    order_type,
                     rejection_reason
                 );
 
                 report!(
                     self.pdf_report,
                     "The algorithm attempted to expose a quantity of {} for Symbol {} \
-                    at Price {} with Time In Force {}, but the order was rejected due to {}.",
+                    at Price {} with Time In Force {} and Order Type {}, but the order was rejected due to {}.",
                     order_quantity,
                     symbol,
                     price,
                     time_in_force,
+                    order_type,
                     rejection_reason
                 );
 
@@ -872,8 +882,8 @@ impl SniperAlgo {
                     execution_status
                 );
 
-                self.executed_quantity += executed_quantity;
-                self.exposed_quantity -= executed_quantity;
+                self.executed_quantity += &executed_quantity;
+                self.exposed_quantity -= &executed_quantity;
 
                 if match self.symbol_information.min_quantity {
                     Some(min_quantity) => self.remaining_quantity < min_quantity,
@@ -992,8 +1002,23 @@ impl SniperAlgo {
                     execution_status
                 );
 
-                self.exposed_quantity -= leaves_quantity;
-                self.remaining_quantity += leaves_quantity;
+                self.exposed_quantity -= &leaves_quantity;
+                self.remaining_quantity += &leaves_quantity;
+
+                report!(
+                    self.pdf_report,
+                    "An order for symbol {} has expired on the exchange with execution status {}. \
+                    During its lifespan, the order executed a quantity of {} \
+                    and left an unexecuted quantity of {} that has been revoked. \
+                    The algorithm has a remaining quantity of {} \
+                    and a cumulative executed quantity of {} until now.",
+                    symbol,
+                    execution_status,
+                    cumulative_quantity,
+                    leaves_quantity,
+                    self.remaining_quantity,
+                    self.executed_quantity
+                );
 
                 log_info!(
                     self.logger,
