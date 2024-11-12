@@ -66,7 +66,7 @@ impl FeedState {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 
 pub struct Level {
     pub level: i32,
@@ -191,7 +191,7 @@ impl FeedUpdate {
 }
 
 use tokio::sync::mpsc::{self, Sender, UnboundedReceiver};
-use tokio::task;
+use tokio::task::{self, JoinHandle};
 
 // Struct to handle async tasks
 
@@ -317,7 +317,7 @@ pub struct FeedHandle {
 }
 
 impl FeedHandle {
-    pub async fn new(trading_pairs: HashSet<(&str, &str)>) -> Self {
+    pub async fn new(trading_pairs: HashSet<(&str, &str)>) -> (Self, JoinHandle<()>) {
         let (sender, receiver) = mpsc::channel(100);
 
         let mut streams_l1 = trading_pairs
@@ -365,9 +365,9 @@ impl FeedHandle {
 
         let actor = FeedActor::new(receiver, binance_l1_stream, binance_l2_stream);
 
-        tokio::spawn(run_my_actor(actor));
+        let handle = tokio::spawn(run_my_actor(actor));
 
-        Self { sender }
+        (Self { sender }, handle)
     }
 
     pub fn subscribe<AlgoId, Symbol>(

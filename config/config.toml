@@ -2,7 +2,7 @@
 algo_type = "sniper"
 algo_id = "555333"
 side = "buy"
-quantity = 0.05
+quantity = 0.0000001
 price = 79300
 base = "btc"
 quote = "usdt"

@@ -1,15 +1,16 @@
-use core::task;
-use std::{collections::HashSet, process, thread, time::Duration};
+use std::process;
+mod algo_context;
+mod algorithams;
+mod config;
 mod logging;
+mod market;
 
 use algo_context::algo_context::AlgoService;
-use feed::actor::{Feed, FeedHandle, FeedMessages};
+use feed::actor::FeedHandle;
 use logging::algo_logger::AlgoLogger;
 use market::market::MarketSessionHandle;
-mod algo_context;
-mod config;
-mod market;
-use config::{AlgorithmConfig, MarketConfig}; // Use the Config struct
+
+use config::{AlgorithmConfig, MarketConfig};
 
 mod feed;
 #[tokio::main(flavor = "multi_thread", worker_threads = 4)]
@@ -35,15 +36,33 @@ async fn main() {
 
     AlgoLogger::init_once().expect("Failed to initialize logger");
 
-    let feed_service = FeedHandle::new(config::extract_trading_pairs(&config.algorithms)).await;
+    println!("Successfully started");
 
-    let market_service = MarketSessionHandle::new(market_config).await;
+    let (feed_service, feed_handle) =
+        FeedHandle::new(config::extract_trading_pairs(&config.algorithms)).await;
 
-    let algo_service = AlgoService::new(feed_service.clone(), market_service.clone()).await;
+    let (market_service, market_handle) = MarketSessionHandle::new(market_config).await;
+
+    let (algo_service, algo_handle) =
+        AlgoService::new(feed_service.clone(), market_service.clone()).await;
 
     for params in &config.algorithms {
         algo_service.create_algo(params.clone());
     }
 
-    thread::sleep(Duration::from_secs(3000));
+    let (feed_result, market_result, algo_result) =
+        tokio::join!(feed_handle, market_handle, algo_handle);
+
+    for (name, result) in [
+        ("Feed handle", feed_result),
+        ("Market handle", market_result),
+        ("Algo handle", algo_result),
+    ]
+    .iter()
+    {
+        if let Err(e) = result {
+            println!("{} finished: {:?}", name, e);
+        }
+    }
+    println!("Algorithms done");
 }

@@ -8,7 +8,7 @@ use barter_integration::model::instrument::symbol;
 use serde::Deserialize;
 use tokio::{
     sync::{mpsc, Mutex},
-    task,
+    task::{self, JoinHandle},
 };
 
 use rust_decimal::{
@@ -238,6 +238,7 @@ pub enum MarketResponses {
         min_price: Option<Decimal>,
         max_price: Option<Decimal>,
         tick_size: Option<Decimal>,
+        min_amount: Option<Decimal>,
     },
     CreateOrderAck {
         order_id: String,
@@ -330,17 +331,19 @@ impl fmt::Display for MarketResponses {
                 min_price,
                 max_price,
                 tick_size,
+                min_amount,
             } => {
                 write!(
                     f,
-                    "SymbolInformation {{ algo_id: {}, min_quantity: {}, max_quantity: {}, lot_size: {}, min_price: {}, max_price: {}, tick_size: {} }}",
+                    "SymbolInformation {{ algo_id: {}, min_quantity: {}, max_quantity: {}, lot_size: {}, min_price: {}, max_price: {}, tick_size: {}, min_amount{} }}",
                     algo_id,
                     format_optional!(min_quantity),
                     format_optional!(max_quantity),
                     format_optional!(lot_size),
                     format_optional!(min_price),
                     format_optional!(max_price),
-                    format_optional!(tick_size)
+                    format_optional!(tick_size),
+                    format_optional!(min_amount),
                 )
             }
             MarketResponses::CreateOrderAck {
@@ -592,14 +595,14 @@ pub struct MarketSessionHandle {
 }
 
 impl MarketSessionHandle {
-    pub async fn new(market_config: MarketConfig) -> Self {
+    pub async fn new(market_config: MarketConfig) -> (Self, JoinHandle<()>) {
         let (sender, receiver) = mpsc::channel(100);
 
         let actor = MarketSession::new(market_config, receiver, sender.clone()).await;
 
-        tokio::spawn(run_my_actor(actor));
+        let handle = tokio::spawn(run_my_actor(actor));
 
-        Self { sender }
+        (Self { sender }, handle)
     }
 
     pub fn create_order(
@@ -705,6 +708,7 @@ impl MarketSession {
 
                         let (mut min_qty, mut max_qty, mut lot_size) = (None, None, None);
                         let (mut min_price, mut max_price, mut tick_size) = (None, None, None);
+                        let mut min_amount = None;
 
                         for filter in &answer.filters {
                             match filter {
@@ -726,6 +730,16 @@ impl MarketSession {
                                     max_price = mxp.parse::<Decimal>().ok();
                                     tick_size = ts.parse::<Decimal>().ok();
                                 }
+                                Filters::Notional {
+                                    notional,
+                                    min_notional,
+                                    apply_to_market,
+                                    avg_price_mins,
+                                } => {
+                                    min_amount = min_notional
+                                        .as_ref()
+                                        .and_then(|notional| notional.parse::<Decimal>().ok());
+                                }
                                 _ => {}
                             }
                         }
@@ -739,6 +753,7 @@ impl MarketSession {
                                 min_price,
                                 max_price,
                                 tick_size,
+                                min_amount,
                             })
                             .unwrap();
                     }
@@ -753,6 +768,7 @@ impl MarketSession {
                                 min_price: None,
                                 max_price: None,
                                 tick_size: None,
+                                min_amount: None,
                             })
                             .unwrap();
                     }
