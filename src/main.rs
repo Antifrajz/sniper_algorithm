@@ -5,7 +5,7 @@ mod config;
 mod logging;
 mod market;
 
-use algo_context::algo_context::AlgoService;
+use algo_context::algo_service::AlgoService;
 use feed::actor::FeedHandle;
 use logging::algo_logger::AlgoLogger;
 use market::market::MarketSessionHandle;

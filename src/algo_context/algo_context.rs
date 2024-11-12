@@ -1,3 +1,4 @@
+use super::messages::messages::AlgoMessages;
 use crate::algorithams::algorithm::{AlgoType, Algorithm};
 use crate::algorithams::sniper_algo::SniperAlgo;
 use crate::config::AlgoParameters;
@@ -6,7 +7,7 @@ use crate::{
         self,
         actor::{FeedService, FeedUpdate},
     },
-    market::market::{MarketResponses, MarketService, MarketSessionHandle, Side},
+    market::market::{MarketResponses, MarketService, MarketSessionHandle},
 };
 use feed::actor::FeedHandle;
 use futures::future::join_all;
@@ -14,44 +15,9 @@ use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::spawn;
 use tokio::sync::{mpsc, Mutex};
-use tokio::task::JoinHandle;
 use uuid::Uuid;
 
-pub enum AlgoMessages {
-    CreateAlgo(AlgoParameters),
-}
-
-pub struct AlgoService {
-    sender: mpsc::Sender<AlgoMessages>,
-}
-
-impl AlgoService {
-    pub async fn new(
-        feed_handle: FeedHandle,
-        market_session_handle: MarketSessionHandle,
-    ) -> (Self, JoinHandle<()>) {
-        let (sender, receiver) = mpsc::channel(10);
-
-        let actor = AlgoContext::new(receiver, feed_handle, market_session_handle);
-
-        let handle = tokio::spawn(run_my_actor(actor));
-
-        (Self { sender }, handle)
-    }
-
-    pub fn create_algo(&self, params: AlgoParameters) {
-        self.sender
-            .try_send(AlgoMessages::CreateAlgo(params))
-            .unwrap_or_else(|e| {
-                eprintln!(
-                    "Failed to send Create Algo message to Algo Context: {:?}",
-                    e
-                );
-            });
-    }
-}
-
-struct AlgoContext {
+pub(super) struct AlgoContext {
     algo_context_id: String,
     algo_messages_receiver: mpsc::Receiver<AlgoMessages>,
     feed_sender: mpsc::Sender<FeedUpdate>,
@@ -167,7 +133,7 @@ impl AlgoContext {
     }
 }
 
-async fn run_my_actor(mut actor: AlgoContext) {
+pub(super) async fn run_my_actor(mut actor: AlgoContext) {
     loop {
         tokio::select! {
             Some(algo_message) = actor.algo_messages_receiver.recv() => {
