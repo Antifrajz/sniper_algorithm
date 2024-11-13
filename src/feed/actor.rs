@@ -426,7 +426,7 @@ impl FeedHandle {
         algo_id: AlgoId,
         base: Symbol,
         quote: Symbol,
-        subscriber: TrackedSender<FeedUpdate>,
+        subscriber: &TrackedSender<FeedUpdate>,
     ) where
         AlgoId: Into<String>,
         Symbol: Into<String>,
@@ -435,7 +435,7 @@ impl FeedHandle {
             algo_id: algo_id.into(),
             base: base.into(),
             quote: quote.into(),
-            subscriber,
+            subscriber: subscriber.clone(),
         });
 
         if sending_result.is_err() {
@@ -590,7 +590,7 @@ impl FeedService {
             self.algo_id.as_str(),
             base.into(),
             quote.into(),
-            self.meesage_sender.clone(),
+            &self.meesage_sender,
         );
     }
 }

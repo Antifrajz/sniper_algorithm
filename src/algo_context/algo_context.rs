@@ -1,6 +1,7 @@
 use super::messages::messages::AlgoMessages;
-use crate::algorithams::algorithm::{AlgoType, Algorithm};
+use crate::algorithams::algorithm::Algorithm;
 use crate::algorithams::sniper_algo::SniperAlgo;
+use crate::common_types::algo_type::AlgoType;
 use crate::config::AlgoParameters;
 use crate::{
     feed::{

@@ -1,6 +1,7 @@
 use std::process;
 mod algo_context;
 mod algorithams;
+mod common_types;
 mod config;
 mod logging;
 mod market;

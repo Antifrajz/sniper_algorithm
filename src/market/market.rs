@@ -908,7 +908,7 @@ impl MarketService {
         symbol: Symbol,
         price: Decimal,
         quantity: Decimal,
-        side: Side,
+        side: &Side,
     ) where
         Symbol: Into<String>,
     {
@@ -916,7 +916,7 @@ impl MarketService {
             symbol.into(),
             price.into(),
             quantity.into(),
-            side,
+            side.clone(),
             OrderType::Limit,
             TIF::IOC,
         );

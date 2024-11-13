@@ -5,7 +5,7 @@ use std::collections::HashSet;
 use std::env;
 use std::fs;
 
-use crate::algorithams::algorithm::AlgoType;
+use crate::common_types::algo_type::AlgoType;
 use crate::market::market::Side;
 
 #[derive(Deserialize, Debug, Clone)]

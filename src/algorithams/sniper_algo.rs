@@ -1,4 +1,5 @@
 use crate::algorithams::algorithm::Algorithm;
+use crate::common_types::symbol_information::SymbolInformation;
 use crate::config::AlgoParameters;
 use crate::logging::algo_report::AlgoPdfLogger;
 use crate::market::market::{OrderType, TIF};
@@ -327,63 +328,6 @@ impl fmt::Display for Event {
     }
 }
 
-struct SymbolInformation {
-    min_quantity: Option<Decimal>,
-    max_quantity: Option<Decimal>,
-    lot_size: Option<Decimal>,
-    min_price: Option<Decimal>,
-    max_price: Option<Decimal>,
-    tick_size: Option<Decimal>,
-    min_amount: Option<Decimal>,
-}
-
-impl SymbolInformation {
-    pub fn new() -> Self {
-        SymbolInformation {
-            min_quantity: None,
-            max_quantity: None,
-            lot_size: None,
-            min_price: None,
-            max_price: None,
-            tick_size: None,
-            min_amount: None,
-        }
-    }
-
-    pub fn set_values(
-        &mut self,
-        min_quantity: Option<Decimal>,
-        max_quantity: Option<Decimal>,
-        lot_size: Option<Decimal>,
-        min_price: Option<Decimal>,
-        max_price: Option<Decimal>,
-        tick_size: Option<Decimal>,
-        min_amount: Option<Decimal>,
-    ) {
-        if let Some(value) = min_quantity {
-            self.min_quantity = Some(value);
-        }
-        if let Some(value) = max_quantity {
-            self.max_quantity = Some(value);
-        }
-        if let Some(value) = lot_size {
-            self.lot_size = Some(value);
-        }
-        if let Some(value) = min_price {
-            self.min_price = Some(value);
-        }
-        if let Some(value) = max_price {
-            self.max_price = Some(value);
-        }
-        if let Some(value) = tick_size {
-            self.tick_size = Some(value);
-        }
-        if let Some(value) = min_amount {
-            self.min_amount = Some(value);
-        }
-    }
-}
-
 impl SniperAlgo {
     pub fn new(
         algo_parameters: AlgoParameters,
@@ -409,7 +353,8 @@ impl SniperAlgo {
         );
 
         Self {
-            algo_parameters: algo_parameters.clone(),
+            logger: AlgoLogger::new(&algo_parameters.algo_id),
+            algo_parameters: algo_parameters,
             market_sevice,
             feed_service,
             state: State::New,
@@ -417,7 +362,6 @@ impl SniperAlgo {
             remaining_quantity,
             executed_quantity: Decimal::zero(),
             exposed_quantity: Decimal::zero(),
-            logger: AlgoLogger::new(&algo_parameters.algo_id),
             pdf_report,
         }
     }
@@ -561,14 +505,14 @@ impl SniperAlgo {
                         self.algo_parameters.make_symbol(),
                         price,
                         order_quantity,
-                        self.algo_parameters.side.clone(),
+                        self.algo_parameters.side,
                     );
 
                     self.market_sevice.create_ioc_order(
                         self.algo_parameters.make_symbol(),
                         price,
                         order_quantity,
-                        self.algo_parameters.side.clone(),
+                        &self.algo_parameters.side,
                     );
                     self.state = State::PendingCreate;
                 } else {
@@ -837,8 +781,8 @@ impl SniperAlgo {
 
                     self.state = State::Done;
                     self.feed_service.unsubscribe_from_l1(
-                        self.algo_parameters.base.clone(),
-                        self.algo_parameters.quote.clone(),
+                        &self.algo_parameters.base,
+                        &self.algo_parameters.quote,
                     );
                     self.pdf_report.write_to_pdf().unwrap();
                 } else {
