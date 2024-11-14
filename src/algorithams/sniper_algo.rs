@@ -1,12 +1,12 @@
 use crate::algorithams::algorithm::Algorithm;
-use crate::common_types::symbol_information::SymbolInformation;
 use crate::config::AlgoParameters;
+use crate::feed::feed_service::FeedService;
+use crate::feed::messages::l1_data::L1Data;
+use crate::feed::messages::l2_data::L2Data;
+use crate::feed::messages::symbol_information::SymbolInformation;
 use crate::logging::algo_report::AlgoPdfLogger;
+use crate::market::market::{ExecutionType, MarketResponses, MarketService, Side};
 use crate::market::market::{OrderType, TIF};
-use crate::{
-    feed::actor::{FeedService, L1Data, L2Data},
-    market::market::{ExecutionType, MarketResponses, MarketService, Side},
-};
 use crate::{log_debug, log_error, log_info, logging, report};
 use async_trait::async_trait;
 use core::fmt;

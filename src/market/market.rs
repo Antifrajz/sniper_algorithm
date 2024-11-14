@@ -891,15 +891,18 @@ pub struct MarketService {
 }
 
 impl MarketService {
-    pub fn new(
-        market_session_handle: MarketSessionHandle,
-        meesage_sender: mpsc::Sender<MarketResponses>,
-        algo_id: String,
-    ) -> Self {
+    pub fn new<AlgoId>(
+        market_session_handle: &MarketSessionHandle,
+        meesage_sender: &mpsc::Sender<MarketResponses>,
+        algo_id: AlgoId,
+    ) -> Self
+    where
+        AlgoId: Into<String>,
+    {
         Self {
-            market_session_handle,
-            meesage_sender,
-            algo_id,
+            market_session_handle: market_session_handle.clone(),
+            meesage_sender: meesage_sender.clone(),
+            algo_id: algo_id.into(),
         }
     }
 

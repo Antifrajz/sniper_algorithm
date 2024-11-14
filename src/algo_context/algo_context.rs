@@ -3,14 +3,10 @@ use crate::algorithams::algorithm::Algorithm;
 use crate::algorithams::sniper_algo::SniperAlgo;
 use crate::common_types::algo_type::AlgoType;
 use crate::config::AlgoParameters;
-use crate::{
-    feed::{
-        self,
-        actor::{FeedService, FeedUpdate},
-    },
-    market::market::{MarketResponses, MarketService, MarketSessionHandle},
-};
-use feed::actor::FeedHandle;
+use crate::feed::feed_handle::FeedHandle;
+use crate::feed::feed_service::FeedService;
+use crate::feed::messages::messages::FeedUpdate;
+use crate::market::market::{MarketResponses, MarketService, MarketSessionHandle};
 use futures::future::join_all;
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -36,7 +32,7 @@ impl AlgoContext {
         feed_hadnle: FeedHandle,
         market_session_handle: MarketSessionHandle,
     ) -> Self {
-        let (feed_sender, feed_receiver) = mpsc::channel(10);
+        let (feed_sender, feed_receiver) = mpsc::channel(1000);
         let (market_sender, market_receiver) = mpsc::channel(10);
 
         let algo_context_id = Uuid::new_v4().to_string();
@@ -55,26 +51,23 @@ impl AlgoContext {
     }
 
     pub fn create_algo(&mut self, algo_parameters: AlgoParameters) {
-        let market_service = MarketService::new(
-            self.market_session_handle.clone(),
-            self.market_sender.clone(),
-            algo_parameters.algo_id.clone(),
-        );
+        let algo_id = algo_parameters.algo_id.clone();
+
+        let market_service =
+            MarketService::new(&self.market_session_handle, &self.market_sender, &algo_id);
 
         let feed_service = FeedService::new(
-            self.feed_hadnle.clone(),
-            self.algo_context_id.clone(),
-            algo_parameters.algo_id.clone(),
-            self.feed_sender.clone(),
+            &self.feed_hadnle,
+            &self.algo_context_id,
+            &algo_id,
+            &self.feed_sender,
         );
 
         match algo_parameters.algo_type {
             AlgoType::Sniper => {
-                let algo = SniperAlgo::new(algo_parameters.clone(), market_service, feed_service);
-                self.algorithams.insert(
-                    algo_parameters.algo_id.clone(),
-                    Arc::new(Mutex::new(Box::new(algo))),
-                );
+                let algo = SniperAlgo::new(algo_parameters, market_service, feed_service);
+                self.algorithams
+                    .insert(algo_id, Arc::new(Mutex::new(Box::new(algo))));
             }
         }
     }

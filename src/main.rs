@@ -7,7 +7,7 @@ mod logging;
 mod market;
 
 use algo_context::algo_service::AlgoService;
-use feed::actor::FeedHandle;
+use feed::feed_handle::FeedHandle;
 use logging::algo_logger::AlgoLogger;
 use market::market::MarketSessionHandle;
 
@@ -45,7 +45,7 @@ async fn main() {
     let (market_service, market_handle) = MarketSessionHandle::new(market_config).await;
 
     let (algo_service, algo_handle) =
-        AlgoService::new(feed_service.clone(), market_service.clone()).await;
+        AlgoService::new(feed_service.clone(), market_service.clone());
 
     for params in &config.algorithms {
         algo_service.create_algo(params.clone());
