@@ -1,36 +1,20 @@
-use ::futures::future::join_all;
-use barter_data::event::MarketEvent;
-use barter_data::exchange::binance::spot::{BinanceSpot, BinanceSpotTestnet};
-use barter_data::exchange::ExchangeId;
-use barter_data::instrument;
-use barter_data::streams::builder::{self, StreamBuilder};
-use barter_data::streams::Streams;
-use barter_data::subscription::book::{OrderBook, OrderBookL1, OrderBooksL1, OrderBooksL2};
-use barter_integration::model::instrument::kind::InstrumentKind;
-use barter_integration::model::instrument::{symbol, Instrument};
-use rust_decimal::{
-    prelude::{FromPrimitive, Zero},
-    Decimal,
-};
-use std::collections::{HashMap, HashSet};
-use std::future::Future;
-
-use std::marker::Send;
-use std::pin::Pin;
-use std::sync::Arc;
-use std::time::Duration;
-use tokio::sync::{futures, Mutex};
-
-use tokio::sync::mpsc::{self, Sender, UnboundedReceiver};
-use tokio::task::{self, JoinHandle};
-
-use crate::common_types::tracked_sender::TrackedSender;
-
 use super::messages::l1_data::L1Data;
 use super::messages::l2_data::L2Data;
 use super::messages::level::Level;
 use super::messages::messages::FeedUpdate;
 use super::FeedMessages;
+use crate::common_types::tracked_sender::TrackedSender;
+use ::futures::future::join_all;
+use barter_data::event::MarketEvent;
+use barter_data::subscription::book::{OrderBook, OrderBookL1};
+use barter_integration::model::instrument::Instrument;
+use rust_decimal::prelude::Zero;
+use rust_decimal::{prelude::FromPrimitive, Decimal};
+use std::collections::HashMap;
+use std::sync::Arc;
+use tokio::sync::mpsc::{self, UnboundedReceiver};
+use tokio::sync::Mutex;
+use tokio::task::{self};
 
 type AlgoId = String;
 type InstrumentId = String;
@@ -161,11 +145,11 @@ pub(super) async fn run_my_actor(mut actor: FeedActor) {
 
             if let Some(senders_map) = subscribers.get(&instrument) {
                 let l1_data = L1Data::new(
-                    instrument.clone(),
-                    Decimal::from_f64(msg.kind.best_bid.amount).unwrap(),
-                    Decimal::from_f64(msg.kind.best_bid.price).unwrap(),
-                    Decimal::from_f64(msg.kind.best_ask.amount).unwrap(),
-                    Decimal::from_f64(msg.kind.best_ask.price).unwrap(),
+                    instrument,
+                    Decimal::from_f64(msg.kind.best_bid.amount).unwrap_or(Decimal::zero()),
+                    Decimal::from_f64(msg.kind.best_bid.price).unwrap_or(Decimal::zero()),
+                    Decimal::from_f64(msg.kind.best_ask.amount).unwrap_or(Decimal::zero()),
+                    Decimal::from_f64(msg.kind.best_ask.price).unwrap_or(Decimal::zero()),
                 );
                 let send_futures: Vec<_> = senders_map
                     .iter()
@@ -179,11 +163,9 @@ pub(super) async fn run_my_actor(mut actor: FeedActor) {
                 let results = join_all(send_futures).await;
                 for result in results {
                     if result.is_err() {
-                        println!("Failed to send to one of the senders.");
+                        eprintln!("Failed to send to one of the senders.");
                     }
                 }
-            } else {
-                println!("No senders found for {:?}", instrument);
             }
         }
     }));
@@ -207,8 +189,8 @@ pub(super) async fn run_my_actor(mut actor: FeedActor) {
                     .map(|(i, l)| {
                         Level::new(
                             i as i32 + 1,
-                            Decimal::from_f64(l.amount).unwrap(),
-                            Decimal::from_f64(l.price).unwrap(),
+                            Decimal::from_f64(l.amount).unwrap_or(Decimal::zero()),
+                            Decimal::from_f64(l.price).unwrap_or(Decimal::zero()),
                         )
                     })
                     .collect(),
@@ -220,8 +202,8 @@ pub(super) async fn run_my_actor(mut actor: FeedActor) {
                     .map(|(i, l)| {
                         Level::new(
                             i as i32 + 1,
-                            Decimal::from_f64(l.amount).unwrap(),
-                            Decimal::from_f64(l.price).unwrap(),
+                            Decimal::from_f64(l.amount).unwrap_or(Decimal::zero()),
+                            Decimal::from_f64(l.price).unwrap_or(Decimal::zero()),
                         )
                     })
                     .collect(),
@@ -243,8 +225,6 @@ pub(super) async fn run_my_actor(mut actor: FeedActor) {
                         println!("Failed to send to one of the senders.");
                     }
                 }
-            } else {
-                println!("No senders found for {:?}", instrument);
             }
         }
     }));

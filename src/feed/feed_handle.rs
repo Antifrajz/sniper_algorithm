@@ -1,40 +1,17 @@
-use ::futures::future::join_all;
+use super::feed_actor::{run_my_actor, FeedActor};
+use super::messages::messages::FeedUpdate;
+use super::FeedMessages;
+use crate::common_types::tracked_sender::TrackedSender;
 use barter_data::event::MarketEvent;
-use barter_data::exchange::binance::spot::{BinanceSpot, BinanceSpotTestnet};
+use barter_data::exchange::binance::spot::BinanceSpotTestnet;
 use barter_data::exchange::ExchangeId;
-use barter_data::instrument;
-use barter_data::streams::builder::{self, StreamBuilder};
 use barter_data::streams::Streams;
 use barter_data::subscription::book::{OrderBook, OrderBookL1, OrderBooksL1, OrderBooksL2};
 use barter_integration::model::instrument::kind::InstrumentKind;
-use barter_integration::model::instrument::{symbol, Instrument};
-use rust_decimal::{
-    prelude::{FromPrimitive, Zero},
-    Decimal,
-};
-use std::collections::{HashMap, HashSet};
-use std::future::Future;
-
-use std::marker::Send;
-use std::pin::Pin;
-use std::sync::Arc;
-use std::time::Duration;
-use tokio::sync::{futures, Mutex};
-
-use tokio::sync::mpsc::{self, Sender, UnboundedReceiver};
-use tokio::task::{self, JoinHandle};
-
-use crate::common_types::tracked_sender::TrackedSender;
-
-use super::feed_actor::{run_my_actor, FeedActor};
-use super::messages::l1_data::L1Data;
-use super::messages::l2_data::L2Data;
-use super::messages::level::Level;
-use super::messages::messages::FeedUpdate;
-use super::FeedMessages;
-
-type AlgoId = String;
-type InstrumentId = String;
+use barter_integration::model::instrument::Instrument;
+use std::collections::HashSet;
+use tokio::sync::mpsc::{self, UnboundedReceiver};
+use tokio::task::JoinHandle;
 
 #[derive(Clone)]
 pub struct FeedHandle {

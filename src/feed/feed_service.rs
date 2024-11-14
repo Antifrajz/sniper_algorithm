@@ -51,4 +51,28 @@ impl FeedService {
             &self.meesage_sender,
         );
     }
+
+    pub fn subscribe_to_l2<Symbol>(&self, base: Symbol, quote: Symbol)
+    where
+        Symbol: Into<String>,
+    {
+        self.feed_handle.subscribe_to_l2(
+            self.algo_id.as_str(),
+            base.into(),
+            quote.into(),
+            self.meesage_sender.clone(),
+        );
+    }
+
+    pub fn unsubscribe_from_l2<Symbol>(&self, base: Symbol, quote: Symbol)
+    where
+        Symbol: Into<String>,
+    {
+        self.feed_handle.unsubscribe_from_l2(
+            self.algo_id.as_str(),
+            base.into(),
+            quote.into(),
+            &self.meesage_sender,
+        );
+    }
 }
