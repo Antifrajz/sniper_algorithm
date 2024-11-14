@@ -1,12 +1,16 @@
 use crate::algorithams::algorithm::Algorithm;
+use crate::common_types::order_types::OrderType;
+use crate::common_types::side::Side;
+use crate::common_types::time_in_force::TIF;
 use crate::config::AlgoParameters;
 use crate::feed::feed_service::FeedService;
 use crate::feed::messages::l1_data::L1Data;
 use crate::feed::messages::l2_data::L2Data;
 use crate::feed::messages::symbol_information::SymbolInformation;
 use crate::logging::algo_report::AlgoPdfLogger;
-use crate::market::market::{ExecutionType, MarketResponses, MarketService, Side};
-use crate::market::market::{OrderType, TIF};
+use crate::market::market_service::MarketService;
+use crate::market::messages::execution_type::ExecutionType;
+use crate::market::messages::market_responses::MarketResponses;
 use crate::{log_debug, log_error, log_info, logging, report};
 use async_trait::async_trait;
 use core::fmt;
@@ -353,7 +357,10 @@ impl SniperAlgo {
         );
 
         Self {
-            logger: AlgoLogger::new(&algo_parameters.algo_id),
+            logger: AlgoLogger::new(
+                &algo_parameters.algo_type.to_string(),
+                &algo_parameters.algo_id,
+            ),
             algo_parameters: algo_parameters,
             market_sevice,
             feed_service,

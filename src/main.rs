@@ -5,11 +5,10 @@ mod common_types;
 mod config;
 mod logging;
 mod market;
-
+use crate::market::market_handle::MarketHandle;
 use algo_context::algo_service::AlgoService;
 use feed::feed_handle::FeedHandle;
 use logging::algo_logger::AlgoLogger;
-use market::market::MarketSessionHandle;
 
 use config::{AlgorithmConfig, MarketConfig};
 
@@ -42,7 +41,7 @@ async fn main() {
     let (feed_service, feed_handle) =
         FeedHandle::new(config::extract_trading_pairs(&config.algorithms)).await;
 
-    let (market_service, market_handle) = MarketSessionHandle::new(market_config).await;
+    let (market_service, market_handle) = MarketHandle::new(market_config).await;
 
     let (algo_service, algo_handle) =
         AlgoService::new(feed_service.clone(), market_service.clone());

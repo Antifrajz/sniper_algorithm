@@ -1,8 +1,6 @@
-use tokio::sync::mpsc;
-
-use crate::common_types::tracked_sender::TrackedSender;
-
 use super::{feed_handle::FeedHandle, messages::messages::FeedUpdate};
+use crate::common_types::tracked_sender::TrackedSender;
+use tokio::sync::mpsc;
 
 #[derive(Clone)]
 pub struct FeedService {

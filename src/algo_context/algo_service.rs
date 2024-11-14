@@ -2,7 +2,7 @@ use super::algo_context::{run_my_actor, AlgoContext};
 use super::messages::messages::AlgoMessages;
 use crate::config::AlgoParameters;
 use crate::feed::feed_handle::FeedHandle;
-use crate::market::market::MarketSessionHandle;
+use crate::market::market_handle::MarketHandle;
 use tokio::sync::mpsc;
 use tokio::task::JoinHandle;
 
@@ -11,13 +11,10 @@ pub struct AlgoService {
 }
 
 impl AlgoService {
-    pub fn new(
-        feed_handle: FeedHandle,
-        market_session_handle: MarketSessionHandle,
-    ) -> (Self, JoinHandle<()>) {
+    pub fn new(feed_handle: FeedHandle, market_handle: MarketHandle) -> (Self, JoinHandle<()>) {
         let (sender, receiver) = mpsc::channel(10);
 
-        let actor = AlgoContext::new(receiver, feed_handle, market_session_handle);
+        let actor = AlgoContext::new(receiver, feed_handle, market_handle);
 
         let handle = tokio::spawn(run_my_actor(actor));
 

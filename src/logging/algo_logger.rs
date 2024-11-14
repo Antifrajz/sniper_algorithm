@@ -1,5 +1,4 @@
-use flexi_logger::{DeferredNow, FileSpec, Logger, WriteMode};
-use log::Record;
+use flexi_logger::{FileSpec, Logger, WriteMode};
 use std::sync::Once;
 use std::{
     fs::{self, OpenOptions},
@@ -8,22 +7,25 @@ use std::{
 };
 
 pub struct AlgoLogger {
-    algo_id: String,
-    log_file: std::fs::File, // Unique file handle for each algorithm
+    log_file: std::fs::File,
 }
 
 // Static initializer for one-time global logger setup
 static INIT: Once = Once::new();
 
 impl AlgoLogger {
-    /// Initializes the global logger configuration once, setting up the logs directory.
     pub fn init_once() -> Result<(), Box<dyn std::error::Error>> {
-        // Clear the logs directory if it exists
         let logs_dir = Path::new("logs");
         if logs_dir.exists() {
-            fs::remove_dir_all(logs_dir)?; // Delete all files in the logs directory
+            fs::remove_dir_all(logs_dir)?;
         }
-        fs::create_dir_all(logs_dir)?; // Recreate the directory
+        fs::create_dir_all(logs_dir)?;
+
+        let reports_dir = Path::new("reports");
+        if reports_dir.exists() {
+            fs::remove_dir_all(reports_dir)?;
+        }
+        fs::create_dir_all(reports_dir)?;
 
         INIT.call_once(|| {
             Logger::try_with_str("info")
@@ -37,26 +39,19 @@ impl AlgoLogger {
         Ok(())
     }
 
-    /// Creates a new AlgoLogger for a specific algorithm ID, each with its own file.
-    pub fn new(algo_id: &str) -> Self {
-        let log_file_path = format!("logs/{}.log", algo_id);
+    pub fn new(algo_type: &str, algo_id: &str) -> Self {
+        let log_file_path = format!("logs/{}_{}_.log", algo_type, algo_id);
 
-        // Create or open the specific log file for this algorithm
         let log_file = OpenOptions::new()
             .create(true)
             .append(true)
             .open(&log_file_path)
             .expect("Unable to open log file");
 
-        Self {
-            algo_id: algo_id.to_string(),
-            log_file,
-        }
+        Self { log_file }
     }
 
-    /// Logs a message to this algorithm's log file with the specified level and context.
     fn write_log(&mut self, level: &str, context: &str, message: std::fmt::Arguments) {
-        // Format the timestamp and message for this log entry
         let timestamp = chrono::Utc::now().format("%Y-%m-%d %H:%M:%S");
         writeln!(
             self.log_file,
@@ -66,17 +61,14 @@ impl AlgoLogger {
         .expect("Failed to write log message");
     }
 
-    /// Logs an info-level message with formatted arguments and context.
     pub fn log_info(&mut self, context: &str, args: std::fmt::Arguments) {
         self.write_log("INFO", context, args);
     }
 
-    /// Logs an error-level message with formatted arguments and context.
     pub fn log_error(&mut self, context: &str, args: std::fmt::Arguments) {
         self.write_log("ERROR", context, args);
     }
 
-    /// Logs a debug-level message with formatted arguments and context, only in debug builds.
     #[cfg(debug_assertions)]
     pub fn log_debug(&mut self, context: &str, args: std::fmt::Arguments) {
         self.write_log("DEBUG", context, args);
@@ -85,7 +77,7 @@ impl AlgoLogger {
     /// No-op in release builds, so debug logs are ignored.
     #[cfg(not(debug_assertions))]
     pub fn log_debug(&mut self, _context: &str, _args: std::fmt::Arguments) {
-        // Do nothing in release builds
+        // nop
     }
 }
 

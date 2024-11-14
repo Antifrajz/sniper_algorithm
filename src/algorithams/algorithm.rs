@@ -2,7 +2,7 @@ use async_trait::async_trait;
 
 use crate::{
     feed::messages::{l1_data::L1Data, l2_data::L2Data},
-    market::market::MarketResponses,
+    market::messages::market_responses::MarketResponses,
 };
 
 #[async_trait]

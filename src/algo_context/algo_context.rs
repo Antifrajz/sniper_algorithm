@@ -6,7 +6,9 @@ use crate::config::AlgoParameters;
 use crate::feed::feed_handle::FeedHandle;
 use crate::feed::feed_service::FeedService;
 use crate::feed::messages::messages::FeedUpdate;
-use crate::market::market::{MarketResponses, MarketService, MarketSessionHandle};
+use crate::market::market_handle::MarketHandle;
+use crate::market::market_service::MarketService;
+use crate::market::messages::market_responses::MarketResponses;
 use futures::future::join_all;
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -23,14 +25,14 @@ pub(super) struct AlgoContext {
     market_receiver: mpsc::Receiver<MarketResponses>,
     algorithams: HashMap<String, Arc<Mutex<Box<dyn Algorithm + Send>>>>,
     feed_hadnle: FeedHandle,
-    market_session_handle: MarketSessionHandle,
+    market_handle: MarketHandle,
 }
 
 impl AlgoContext {
     pub fn new(
         algo_messages_receiver: mpsc::Receiver<AlgoMessages>,
         feed_hadnle: FeedHandle,
-        market_session_handle: MarketSessionHandle,
+        market_handle: MarketHandle,
     ) -> Self {
         let (feed_sender, feed_receiver) = mpsc::channel(1000);
         let (market_sender, market_receiver) = mpsc::channel(10);
@@ -46,15 +48,14 @@ impl AlgoContext {
             market_receiver,
             algorithams: HashMap::new(),
             feed_hadnle,
-            market_session_handle,
+            market_handle,
         }
     }
 
     pub fn create_algo(&mut self, algo_parameters: AlgoParameters) {
         let algo_id = algo_parameters.algo_id.clone();
 
-        let market_service =
-            MarketService::new(&self.market_session_handle, &self.market_sender, &algo_id);
+        let market_service = MarketService::new(&self.market_handle, &self.market_sender, &algo_id);
 
         let feed_service = FeedService::new(
             &self.feed_hadnle,

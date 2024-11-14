@@ -6,7 +6,7 @@ use std::env;
 use std::fs;
 
 use crate::common_types::algo_type::AlgoType;
-use crate::market::market::Side;
+use crate::common_types::side::Side;
 
 #[derive(Deserialize, Debug, Clone)]
 

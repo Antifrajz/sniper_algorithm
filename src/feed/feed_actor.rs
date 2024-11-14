@@ -144,13 +144,27 @@ pub(super) async fn run_my_actor(mut actor: FeedActor) {
                 msg.instrument.base.as_ref().to_owned() + msg.instrument.quote.as_ref();
 
             if let Some(senders_map) = subscribers.get(&instrument) {
-                let l1_data = L1Data::new(
-                    instrument,
-                    Decimal::from_f64(msg.kind.best_bid.amount).unwrap_or(Decimal::zero()),
-                    Decimal::from_f64(msg.kind.best_bid.price).unwrap_or(Decimal::zero()),
-                    Decimal::from_f64(msg.kind.best_ask.amount).unwrap_or(Decimal::zero()),
-                    Decimal::from_f64(msg.kind.best_ask.price).unwrap_or(Decimal::zero()),
-                );
+                let l1_data = match (
+                    Decimal::from_f64(msg.kind.best_bid.amount),
+                    Decimal::from_f64(msg.kind.best_bid.price),
+                    Decimal::from_f64(msg.kind.best_ask.amount),
+                    Decimal::from_f64(msg.kind.best_ask.price),
+                ) {
+                    (Some(bid_amount), Some(bid_price), Some(ask_amount), Some(ask_price)) => {
+                        L1Data::new(
+                            instrument.clone(),
+                            bid_amount,
+                            bid_price,
+                            ask_amount,
+                            ask_price,
+                        )
+                    }
+                    _ => {
+                        eprintln!("Failed to construct L1Data, skipping message.");
+                        continue;
+                    }
+                };
+
                 let send_futures: Vec<_> = senders_map
                     .iter()
                     .map(|(tracked_sender, algo_ids)| {
