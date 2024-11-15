@@ -72,8 +72,6 @@ impl MarketActor {
 
                 task::spawn_blocking(move || match general.get_symbol_info(symbol) {
                     Ok(answer) => {
-                        println!("Symbol info siu {:?}", answer);
-
                         let (mut min_qty, mut max_qty, mut lot_size) = (None, None, None);
                         let (mut min_price, mut max_price, mut tick_size) = (None, None, None);
                         let mut min_amount = None;

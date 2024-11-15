@@ -1,9 +1,9 @@
 [[algorithms]]
 algo_type = "sniper"
-algo_id = "555333"
+algo_id = "5552"
 side = "buy"
-quantity = 0.0000001
-price = 79300
+quantity = 0.0005
+price = 89100
 base = "btc"
 quote = "usdt"
 

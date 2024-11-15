@@ -29,7 +29,7 @@ async fn main() {
     let market_config = match MarketConfig::from_env() {
         Ok(config) => config,
         Err(e) => {
-            eprintln!("Failed to load market config: {}", e);
+            eprintln!("Failed to env config: {}", e);
             process::exit(1);
         }
     };
