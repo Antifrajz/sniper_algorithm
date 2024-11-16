@@ -238,11 +238,11 @@ pub(super) async fn run_my_actor(mut actor: MarketActor) {
                 .connect_with_config(&listen_key, &config)
                 .unwrap();
             if let Err(e) = web_socket.event_loop(&keep_running) {
-                println!("Error: {}", e);
+                eprintln!("Error: {}", e);
             }
             user_stream.close(&listen_key).unwrap();
             web_socket.disconnect().unwrap();
-            println!("Userstrem closed and disconnected");
+            eprintln!("Userstrem closed and disconnected");
         }
     });
 

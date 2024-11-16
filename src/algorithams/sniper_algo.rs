@@ -793,7 +793,6 @@ impl SniperAlgo {
                     );
                     self.pdf_report.write_to_pdf().unwrap();
                 } else {
-                    println!("Remaining quantity: {}", self.remaining_quantity);
                     log_info!(
                         self.logger,
                         "transitionToWaitingForMarketConditions",

@@ -2,15 +2,14 @@ use super::feed_actor::{run_my_actor, FeedActor};
 use super::messages::messages::FeedUpdate;
 use super::FeedMessages;
 use crate::common_types::tracked_sender::TrackedSender;
-use barter_data::event::MarketEvent;
-use barter_data::exchange::binance::spot::BinanceSpotTestnet;
-use barter_data::exchange::ExchangeId;
-use barter_data::streams::Streams;
-use barter_data::subscription::book::{OrderBook, OrderBookL1, OrderBooksL1, OrderBooksL2};
-use barter_integration::model::instrument::kind::InstrumentKind;
-use barter_integration::model::instrument::Instrument;
+use barter_data_sniper::exchange::binance::spot::BinanceSpotTestnet;
+use barter_data_sniper::streams::Streams;
+use barter_data_sniper::subscription::book::{OrderBooksL1, OrderBooksL2};
+use barter_instrument_copy::instrument::market_data::kind::MarketDataInstrumentKind;
 use std::collections::HashSet;
-use tokio::sync::mpsc::{self, UnboundedReceiver};
+use std::sync::Arc;
+use tokio::sync::mpsc::{self};
+use tokio::sync::Mutex;
 use tokio::task::JoinHandle;
 
 #[derive(Clone)]
@@ -19,53 +18,50 @@ pub struct FeedHandle {
 }
 
 impl FeedHandle {
-    pub async fn new(trading_pairs: HashSet<(&str, &str)>) -> (Self, JoinHandle<()>) {
+    pub async fn new(trading_pairs: HashSet<(String, String)>) -> (Self, JoinHandle<()>) {
         let (sender, receiver) = mpsc::channel(100);
 
-        let mut streams_l1 = trading_pairs
-            .iter()
-            .fold(
-                Streams::<OrderBooksL1>::builder(),
-                |builder, &(base, quote)| {
-                    builder.subscribe([(
-                        BinanceSpotTestnet::default(),
-                        base,
-                        quote,
-                        InstrumentKind::Spot,
-                        OrderBooksL1,
-                    )])
-                },
-            )
-            .init()
-            .await
-            .unwrap();
+        let l1_stream = Arc::new(Mutex::new(
+            trading_pairs
+                .iter()
+                .fold(
+                    Streams::<OrderBooksL1>::builder(),
+                    |builder, (base, quote)| {
+                        builder.subscribe([(
+                            BinanceSpotTestnet::default(),
+                            base.as_str(),
+                            quote.as_str(),
+                            MarketDataInstrumentKind::Spot,
+                            OrderBooksL1,
+                        )])
+                    },
+                )
+                .init()
+                .await
+                .unwrap(),
+        ));
 
-        let binance_l1_stream: UnboundedReceiver<MarketEvent<Instrument, OrderBookL1>> =
-            streams_l1.select(ExchangeId::BinanceSpot).unwrap();
+        let l2_stream = Arc::new(Mutex::new(
+            trading_pairs
+                .iter()
+                .fold(
+                    Streams::<OrderBooksL2>::builder(),
+                    |builder, (base, quote)| {
+                        builder.subscribe([(
+                            BinanceSpotTestnet::default(),
+                            base.as_str(),
+                            quote.as_str(),
+                            MarketDataInstrumentKind::Spot,
+                            OrderBooksL2,
+                        )])
+                    },
+                )
+                .init()
+                .await
+                .unwrap(),
+        ));
 
-        let mut streams_l2 = trading_pairs
-            .iter()
-            .fold(
-                Streams::<OrderBooksL2>::builder(),
-                |builder, &(base, quote)| {
-                    builder.subscribe([(
-                        BinanceSpotTestnet::default(),
-                        base,
-                        quote,
-                        InstrumentKind::Spot,
-                        OrderBooksL2,
-                    )])
-                },
-            )
-            .init()
-            .await
-            .unwrap();
-
-        let binance_l2_stream: UnboundedReceiver<MarketEvent<Instrument, OrderBook>> =
-            streams_l2.select(ExchangeId::BinanceSpot).unwrap();
-
-        let actor = FeedActor::new(receiver, binance_l1_stream, binance_l2_stream);
-
+        let actor = FeedActor::new(receiver, l1_stream, l2_stream);
         let handle = tokio::spawn(run_my_actor(actor));
 
         (Self { sender }, handle)
