@@ -57,15 +57,11 @@ quote = "usdt"
 - **`algo_type`**: Currently supports only `"sniper"`.
 - **`algo_id`**: Unique identifier for the algorithm, used to track it in the system.
 - **`side`**: `"buy"` or `"sell"`, indicating the order type.
-- **`quantity`**: The amount to buy or sell.
-- **`price`**: The price at which the order will be placed.
-- **`base`**: The base asset of the trading pair (e.g., `BTC` for `BTC/USDT`).
-- **`quote`**: The quote asset of the trading pair (e.g., `USDT` for `BTC/USDT`).
+- **`quantity`**: The quantity to buy or sell.
+- **`price`**: The maximum price at which the order can be executed.
+- **`base`**: The base asset of the trading pair (e.g., `btc` for `BTC/USDT`).
+- **`quote`**: The quote asset of the trading pair (e.g., `usdt` for `BTC/USDT`).
 
-#### **Example Use Case**
-For the trading pair `BTC/USDT`:
-- Set `base` to `"btc"`.
-- Set `quote` to `"usdt"`.
 
 #### **Finding Trading Pairs and Prices**
 You can find available trading pairs and their current prices on Binance market page:
@@ -85,7 +81,7 @@ cargo run
 ## **Key Features**
 - Supports multiple algorithms running simultaneously on the same or different trading pairs.
 - Simple configuration via `config.toml`.
-- Designed for precision trading with Binance Testnet.
+- Optimized for high-performance trading on the Binance Testnet.
 
 ---
 
