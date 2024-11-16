@@ -51,6 +51,8 @@ price = 3000
 base = "buy"
 quote = "usdt"
 
+```
+
 #### **Explanation of Parameters**
 - **`algo_type`**: Currently supports only `"sniper"`.
 - **`algo_id`**: Unique identifier for the algorithm, used to track it in the system.
