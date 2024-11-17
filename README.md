@@ -29,8 +29,8 @@ algo_type = "sniper"
 algo_id = "5552"
 side = "sell"
 quantity = 0.005
-price = 89100
-base = "sell"
+price = 92100
+base = "btc"
 quote = "usdt"
 
 [[algorithms]]
@@ -48,7 +48,7 @@ algo_id = "555333"
 side = "buy"
 quantity = 0.5
 price = 3000
-base = "buy"
+base = "eth"
 quote = "usdt"
 
 ```

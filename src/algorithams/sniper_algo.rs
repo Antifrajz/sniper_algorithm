@@ -450,14 +450,14 @@ impl SniperAlgo {
                 self.state = State::WaitingForMarketConditions;
             }
 
-            (state @ State::New, event) => {
+            (_state @ State::New, _event) => {
                 #[cfg(debug_assertions)]
                 log_error!(
                     self.logger,
                     "unsupportedEvent",
                     "Ignoring event {} as it is not supported in the current state {}.",
-                    event,
-                    state
+                    _event,
+                    _state
                 );
             }
 
@@ -533,14 +533,14 @@ impl SniperAlgo {
                 }
             }
 
-            (state @ State::WaitingForMarketConditions, event) => {
+            (_state @ State::WaitingForMarketConditions, _event) => {
                 #[cfg(debug_assertions)]
                 log_error!(
                     self.logger,
                     "unsupportedEvent",
                     "Ignoring event {} as it is not supported in the current state {}.",
-                    event,
-                    state
+                    _event,
+                    _state
                 );
             }
             (
@@ -632,14 +632,14 @@ impl SniperAlgo {
                 self.state = State::WaitingForMarketConditions;
             }
 
-            (state @ State::PendingCreate, event) => {
+            (_state @ State::PendingCreate, _event) => {
                 #[cfg(debug_assertions)]
                 log_error!(
                     self.logger,
                     "unsupportedEvent",
                     "Ignoring event {} as it is not supported in the current state {}.",
-                    event,
-                    state
+                    _event,
+                    _state
                 );
             }
 
@@ -874,25 +874,25 @@ impl SniperAlgo {
                 self.state = State::WaitingForMarketConditions;
             }
 
-            (state @ State::Working, event) => {
+            (_state @ State::Working, _event) => {
                 #[cfg(debug_assertions)]
                 log_error!(
                     self.logger,
                     "unsupportedEvent",
                     "Ignoring event {} as it is not supported in the current state {}.",
-                    event,
-                    state
+                    _event,
+                    _state
                 );
             }
 
-            (state @ State::Done, event) => {
+            (_state @ State::Done, _event) => {
                 #[cfg(debug_assertions)]
                 log_error!(
                     self.logger,
                     "unsupportedEvent",
                     "Ignoring event {} as it is not supported in the current state {}.",
-                    event,
-                    state
+                    _event,
+                    _state
                 );
             }
         }
