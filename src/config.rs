@@ -63,11 +63,12 @@ impl MarketConfig {
     }
 }
 
-pub fn extract_trading_pairs(params: &[AlgoParameters]) -> HashSet<(&str, &str)> {
-    let mut trading_pairs: HashSet<(&str, &str)> = HashSet::new();
+pub fn extract_trading_pairs(params: &[AlgoParameters]) -> HashSet<(String, String)> {
+    let mut trading_pairs: HashSet<(String, String)> = HashSet::new();
 
     for param in params {
-        trading_pairs.insert(param.get_trading_pair());
+        let (base, quote) = param.get_trading_pair();
+        trading_pairs.insert((base.to_string(), quote.to_string()));
     }
 
     trading_pairs
