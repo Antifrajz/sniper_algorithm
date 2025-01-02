@@ -12,7 +12,6 @@ use crate::market::market_service::MarketService;
 use crate::market::messages::execution_type::ExecutionType;
 use crate::market::messages::market_responses::MarketResponses;
 use crate::{log_debug, log_error, log_info, logging, report};
-use async_trait::async_trait;
 use core::fmt;
 use logging::algo_logger::AlgoLogger;
 use rust_decimal::{prelude::Zero, Decimal};
@@ -133,9 +132,8 @@ pub struct SniperAlgo {
     pdf_report: AlgoPdfLogger,
 }
 
-#[async_trait]
 impl Algorithm for SniperAlgo {
-    async fn handle_l1(&mut self, l1_data: &L1Data) {
+    fn handle_l1(&mut self, l1_data: &L1Data) {
         log_debug!(self.logger, "handle_l1", "Handling L1 update {}", l1_data);
         match self.algo_parameters.side {
             Side::Buy => {
@@ -153,7 +151,7 @@ impl Algorithm for SniperAlgo {
         }
     }
 
-    async fn handle_l2(&mut self, l2_data: &L2Data) {
+    fn handle_l2(&mut self, l2_data: &L2Data) {
         log_debug!(self.logger, "handle_l2", "Handling L2 update {}", l2_data);
     }
 

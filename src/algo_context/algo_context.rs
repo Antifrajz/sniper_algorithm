@@ -9,11 +9,10 @@ use crate::feed::messages::messages::FeedUpdate;
 use crate::market::market_handle::MarketHandle;
 use crate::market::market_service::MarketService;
 use crate::market::messages::market_responses::MarketResponses;
-use futures::future::join_all;
+use rayon::iter::{IntoParallelIterator, ParallelIterator};
 use std::collections::HashMap;
-use std::sync::Arc;
-use tokio::spawn;
-use tokio::sync::{mpsc, Mutex};
+use std::sync::{Arc, Mutex};
+use tokio::sync::mpsc;
 use uuid::Uuid;
 
 pub(super) struct AlgoContext {
@@ -81,48 +80,38 @@ impl AlgoContext {
         }
     }
 
-    pub async fn handle_feed_update(&mut self, feed_update: FeedUpdate) {
+    pub fn handle_feed_update(&mut self, feed_update: FeedUpdate) {
         match feed_update {
             FeedUpdate::L1Update(algo_ids, l1_data) => {
                 let l1_data = Arc::new(l1_data);
-                let futures: Vec<_> = algo_ids
-                    .into_iter()
+                algo_ids
+                    .into_par_iter()
                     .filter_map(|algo_id| self.algorithams.get(&algo_id).cloned())
-                    .map(|algo| {
+                    .for_each(|algo| {
                         let l1_data = Arc::clone(&l1_data);
-                        spawn(async move {
-                            let mut algo = algo.lock().await;
-                            algo.handle_l1(&l1_data).await;
-                        })
-                    })
-                    .collect();
-
-                join_all(futures).await;
+                        let mut algo = algo.lock().unwrap();
+                        algo.handle_l1(&l1_data);
+                    });
             }
             FeedUpdate::L2Update(algo_ids, l2_data) => {
                 let l2_data = Arc::new(l2_data);
-                let futures: Vec<_> = algo_ids
-                    .into_iter()
+                algo_ids
+                    .into_par_iter()
                     .filter_map(|algo_id| self.algorithams.get(&algo_id).cloned())
-                    .map(|algo| {
+                    .for_each(|algo| {
                         let l2_data = Arc::clone(&l2_data);
-                        spawn(async move {
-                            let mut algo = algo.lock().await;
-                            algo.handle_l2(&l2_data).await;
-                        })
-                    })
-                    .collect();
-
-                join_all(futures).await;
+                        let mut algo = algo.lock().unwrap();
+                        algo.handle_l2(&l2_data);
+                    });
             }
         }
     }
 
-    pub async fn handle_market_reponse(&mut self, market_response: MarketResponses) {
+    pub fn handle_market_reponse(&mut self, market_response: MarketResponses) {
         let algo_id = market_response.algo_id();
 
         if let Some(algo) = self.algorithams.get_mut(algo_id) {
-            let mut algo = algo.lock().await;
+            let mut algo = algo.lock().unwrap();
             algo.handle_market_reponse(market_response);
         }
     }
@@ -135,10 +124,10 @@ pub(super) async fn run_my_actor(mut actor: AlgoContext) {
                actor.handle_algo_message(algo_message);
             },
             Some(feed_update) = actor.feed_receiver.recv() => {
-                actor.handle_feed_update(feed_update).await;
+                actor.handle_feed_update(feed_update);
             },
             Some(market_response) = actor.market_receiver.recv() => {
-                actor.handle_market_reponse(market_response).await;
+                actor.handle_market_reponse(market_response);
             },
             else => break,
         }
