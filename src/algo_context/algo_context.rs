@@ -83,23 +83,19 @@ impl AlgoContext {
     pub fn handle_feed_update(&mut self, feed_update: FeedUpdate) {
         match feed_update {
             FeedUpdate::L1Update(algo_ids, l1_data) => {
-                let l1_data = Arc::new(l1_data);
                 algo_ids
                     .into_par_iter()
                     .filter_map(|algo_id| self.algorithams.get(&algo_id).cloned())
-                    .for_each(|algo| {
-                        let l1_data = Arc::clone(&l1_data);
+                    .for_each(move |algo| {
                         let mut algo = algo.lock().unwrap();
                         algo.handle_l1(&l1_data);
                     });
             }
             FeedUpdate::L2Update(algo_ids, l2_data) => {
-                let l2_data = Arc::new(l2_data);
                 algo_ids
                     .into_par_iter()
                     .filter_map(|algo_id| self.algorithams.get(&algo_id).cloned())
-                    .for_each(|algo| {
-                        let l2_data = Arc::clone(&l2_data);
+                    .for_each(move |algo| {
                         let mut algo = algo.lock().unwrap();
                         algo.handle_l2(&l2_data);
                     });
