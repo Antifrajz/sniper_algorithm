@@ -3,7 +3,7 @@ algo_type = "sniper"
 algo_id = "605499"
 side = "sell"
 quantity = 0.005
-price = 92100
+price = 105100
 base = "btc"
 quote = "usdt"
 
@@ -12,7 +12,7 @@ algo_type = "sniper"
 algo_id = "786579"
 side = "buy"
 quantity = 0.5
-price = 200
+price = 150
 base = "sol"
 quote = "usdt"
 

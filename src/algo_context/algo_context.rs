@@ -9,11 +9,18 @@ use crate::feed::messages::messages::FeedUpdate;
 use crate::market::market_handle::MarketHandle;
 use crate::market::market_service::MarketService;
 use crate::market::messages::market_responses::MarketResponses;
+use probe::probe_lazy;
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc;
 use uuid::Uuid;
+
+macro_rules! probe {
+    ($name:ident) => {
+        probe_lazy!(l1_updates, $name, { std::ptr::null::<()>() })
+    };
+}
 
 pub(super) struct AlgoContext {
     algo_context_id: String,
@@ -83,6 +90,7 @@ impl AlgoContext {
     pub fn handle_feed_update(&mut self, feed_update: FeedUpdate) {
         match feed_update {
             FeedUpdate::L1Update(algo_ids, l1_data) => {
+                probe!(start_processing_l1_update);
                 algo_ids
                     .into_par_iter()
                     .filter_map(|algo_id| self.algorithams.get(&algo_id).cloned())
@@ -90,6 +98,7 @@ impl AlgoContext {
                         let mut algo = algo.lock().unwrap();
                         algo.handle_l1(&l1_data);
                     });
+                probe!(finish_processing_l1_update);
             }
             FeedUpdate::L2Update(algo_ids, l2_data) => {
                 algo_ids
