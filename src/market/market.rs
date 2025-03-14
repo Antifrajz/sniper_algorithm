@@ -14,6 +14,7 @@ use binance::{
 };
 use binance::{api::*, config::Config};
 use binance::{model::OrderTradeEvent, userstream::*};
+use probe::probe_lazy;
 use rust_decimal::prelude::ToPrimitive;
 use rust_decimal::{prelude::Zero, Decimal};
 use std::sync::atomic::AtomicBool;
@@ -22,6 +23,12 @@ use tokio::{
     sync::mpsc,
     task::{self},
 };
+
+macro_rules! probe {
+    ($name:ident) => {
+        probe_lazy!(l1_updates, $name, { std::ptr::null::<()>() })
+    };
+}
 
 pub(super) struct MarketActor {
     receiver: mpsc::Receiver<MarketMessages>,
@@ -159,6 +166,9 @@ impl MarketActor {
                 let order_type_binance = BinanceOrderType::from_int(order_type.to_int())
                     .unwrap_or(BinanceOrderType::Limit);
                 let mut algo_contexts = self.algo_contexts.lock().unwrap();
+
+                probe!(order_sent_to_market);
+
                 algo_contexts.insert(order_id.clone(), (algo_id.clone(), sender.clone()));
                 task::spawn_blocking(move || {
                     match account_clone.custom_order(

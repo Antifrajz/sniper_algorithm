@@ -13,6 +13,7 @@ use barter_data_sniper::streams::Streams;
 use barter_data_sniper::subscription::book::{OrderBookEvent, OrderBookL1};
 use barter_instrument_copy::exchange::ExchangeId;
 use barter_instrument_copy::instrument::market_data::MarketDataInstrument;
+use probe::probe_lazy;
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::mpsc::{self};
@@ -36,6 +37,12 @@ pub(super) type L2Stream = Arc<
         >,
     >,
 >;
+
+macro_rules! probe {
+    ($name:ident) => {
+        probe_lazy!(l1_updates, $name, { std::ptr::null::<()>() })
+    };
+}
 
 pub(super) struct FeedActor {
     receiver: mpsc::Receiver<FeedMessages>,
@@ -178,6 +185,10 @@ pub(super) async fn run_my_actor(mut actor: FeedActor) {
                             l1_update.kind.best_ask.amount,
                             l1_update.kind.best_ask.price,
                         );
+
+                        println!("{:#?}", l1_data);
+
+                        probe!(feed_update_received);
 
                         let send_futures: Vec<_> = senders_map
                             .iter()
